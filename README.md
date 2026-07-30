@@ -1,50 +1,87 @@
-# MATRIX POWER NODES — AI Dataset
+# MATRIX POWER NODES — Dataset Workflow
 
-Production-oriented ComfyUI custom nodes and a ready-to-use 25-shot AI dataset workflow.
-Each enabled prompt card is one independently cached API generation. Reference images keep their
-original dimensions and are uploaded sequentially without native ComfyUI batching or resizing.
+[![CI](https://github.com/JsonMatrixLab/matrix-power-nodes/actions/workflows/ci.yml/badge.svg)](https://github.com/JsonMatrixLab/matrix-power-nodes/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
-![Matrix Power Nodes AI Dataset workflow](assets/matrix-power-nodes-workflow.png)
+The first public MATRIX POWER NODES release: two ComfyUI custom nodes and one ready-to-configure
+25-shot workflow for creating consistent AI image datasets through WaveSpeed.
 
-## Included nodes
+> [!IMPORTANT]
+> Version 0.1 contains only the nodes required by this Dataset Workflow. It is not the complete
+> Matrix Lab custom-node collection. Future Matrix nodes and workflows will be released
+> independently and added only after they pass their own verification.
 
-- `MATRIX_DatasetConfig` — up to 14 native `IMAGE` references, one shared model/config output.
-- `MATRIX_DatasetImage` — one prompt, one provider request, one `IMAGE` output.
+![Matrix Power Nodes Dataset Workflow in ComfyUI](assets/matrix-power-nodes-workflow.png)
 
-The bundled workflow adds row and per-shot rgthree bypass controls. It ships with no images, no
-API key, and `live=false`. Prompt cards expose only their prompt text; intentional extra paid
-generations are created by duplicating a prompt card.
+## What this release does
 
-## Install
+- Accepts up to 14 native ComfyUI `IMAGE` references without resizing or batching them together.
+- Generates 12 portrait shots and 13 full- or half-body shots.
+- Keeps every prompt card independently cached.
+- Executes enabled shots sequentially, with one admitted API operation at a time.
+- Starts with `live=false`, so loading or inspecting the workflow sends no paid request.
+- Keeps the WaveSpeed credential out of the workflow and node input schema.
 
-1. Copy or clone this repository into `ComfyUI/custom_nodes/matrix-power-nodes`.
-2. Install [rgthree-comfy](https://github.com/rgthree/rgthree-comfy) for the workflow controls.
+This is a first-version workflow, not a finished universal dataset system. It is intentionally
+focused on one usable reference-to-dataset path.
+
+## Included
+
+| Item | Purpose |
+|---|---|
+| `MATRIX_DatasetConfig` | Collect references and select the shared WaveSpeed model configuration |
+| `MATRIX_DatasetImage` | Execute one independently prompted dataset image operation |
+| `workflows/matrix-power-nodes-ai-dataset.json` | Ready-to-configure 25-shot Face/Body workflow |
+| rgthree controls | Row-level and individual-shot bypass controls |
+
+See [NODES.md](NODES.md) for the exact node inputs, routes, and published cost ceilings.
+
+## Choose your installation path
+
+### Install it yourself
+
+Read [INSTALL.md](INSTALL.md). It covers Git and ZIP installation, the first safe dry run,
+updating, troubleshooting, and uninstalling.
+
+### Ask an AI coding agent to install it
+
+Give the agent this repository and tell it to follow [AGENT-INSTALL.md](AGENT-INSTALL.md). The
+contract forbids overwriting an existing installation, changing the ComfyUI environment, exposing
+credentials, or starting a paid run.
+
+## Quick start
+
+1. Install this repository as `ComfyUI/custom_nodes/matrix-power-nodes`.
+2. Install [rgthree-comfy](https://github.com/rgthree/rgthree-comfy).
 3. Restart ComfyUI and refresh the browser.
 4. Load `workflows/matrix-power-nodes-ai-dataset.json`.
-5. Add at least one reference image and use the `WaveSpeed Key` control once.
-6. Keep `live` off while arranging or validating the graph. Enable only the shots you intend to
-   purchase, then turn `live` on.
+5. Add at least one reference image.
+6. Keep `live=false` while checking the graph.
+7. Enter the WaveSpeed key through the visible `WaveSpeed Key` control on a local installation.
+8. Enable only the shots you intend to buy, then set `live=true` when you deliberately authorize
+   the run.
 
-This pack has no additional pip dependencies. It uses the Python packages already owned by the
-ComfyUI runtime and must not reinstall Torch, CUDA, NumPy, Pillow, or aiohttp.
+The pack has no additional pip dependencies. Do not reinstall or replace Torch, CUDA, NumPy,
+Pillow, aiohttp, or ComfyUI for this repository.
 
-For the complete beginner installation, troubleshooting, update, and uninstall instructions, use
-the outer release package's `START_HERE.md`. For a zero-context coding agent, use the outer
-`INSTALL_WITH_AI_AGENT.md`.
+## Credential and cost safety
 
-Credential entry is intentionally limited to a same-origin loopback browser. Remote, LAN,
-container, and RunPod installations must provide `WAVESPEED_API_KEY` to the ComfyUI server
-process instead of pasting it through the browser.
+No WaveSpeed API key is included in this repository. `WAVESPEED_API_KEY` is only the supported
+environment-variable name for LAN, remote, container, or RunPod installations.
 
-## Cost and retry safety
+Every enabled prompt is a separate paid provider operation. A lost submit response may already
+have been billed. The pack persistently blocks the same semantic retry after an indeterminate
+submit. Check the provider dashboard before deliberately creating another paid result.
 
-Every enabled prompt is a separate paid API operation. A lost submit response may already have
-been billed. The pack persistently blocks the same semantic retry after an indeterminate submit.
-Check the provider dashboard first; duplicate the prompt node only when you intentionally
-authorize a separate paid result.
+Provider keys and runtime caches live outside this repository under the current ComfyUI user's
+data directory. Read [SECURITY.md](SECURITY.md) before sharing workflows, logs, screenshots, or
+support bundles.
 
-Results and reference uploads are cached per provider account without storing the credential in a
-cache key. Provider keys are stored outside workflows under the current ComfyUI user directory.
+## Current release boundary
+
+Version 0.1.0 is the first public source release. It is not yet a Comfy Registry or ComfyUI
+Manager package. Install it from GitHub until those channels are explicitly listed here.
 
 ## License
 
