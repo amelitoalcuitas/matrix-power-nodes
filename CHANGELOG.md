@@ -2,7 +2,8 @@
 
 ## 0.1.0 — 2026-07-29
 
-- First public MATRIX POWER NODES release, limited to the AI Dataset config and image nodes.
+- Dataset Workflow V1: first public MATRIX POWER NODES release, limited to the ComfyUI Custom API
+  config and image nodes built specifically for this workflow.
 - Added the 25-shot Face/Body workflow with rgthree row and per-shot controls.
 - Preserved heterogeneous reference dimensions without native image batching.
 - Added account-scoped semantic and upload caching.

@@ -1,7 +1,8 @@
 # Installation for people
 
-This guide installs the first MATRIX POWER NODES Dataset Workflow release. It contains the two
-custom nodes required by this workflow, not every Matrix Lab custom node.
+This guide installs MATRIX POWER NODES Dataset Workflow V1 (package version 0.1.0). It contains
+only the ComfyUI Custom API Nodes built specifically for this Dataset Workflow, not every Matrix
+Lab custom node.
 
 ## Before you begin
 

@@ -1,16 +1,17 @@
-# MATRIX POWER NODES — Dataset Workflow
+# MATRIX POWER NODES — Dataset Workflow V1
 
 [![CI](https://github.com/JsonMatrixLab/matrix-power-nodes/actions/workflows/ci.yml/badge.svg)](https://github.com/JsonMatrixLab/matrix-power-nodes/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
-The first public MATRIX POWER NODES release: two ComfyUI custom nodes and one ready-to-configure
-25-shot workflow for creating consistent AI image datasets through WaveSpeed.
+Dataset Workflow V1 (package version 0.1.0): two ComfyUI Custom API Nodes and one
+ready-to-configure 25-shot workflow for creating consistent AI image datasets through WaveSpeed.
 
 > [!IMPORTANT]
-> Version 0.1 contains only the nodes required by this Dataset Workflow. It is not the complete
-> Matrix Lab custom-node collection. Future Matrix nodes and workflows will be released
-> independently and added only after they pass their own verification.
+> This repository is **Dataset Workflow V1**. It contains **only the ComfyUI Custom API Nodes
+> built specifically for this Dataset Workflow**. It is not the complete Matrix Lab custom-node
+> collection. Future Matrix nodes and workflows will be released independently and added only
+> after they pass their own verification.
 
 ![Matrix Power Nodes Dataset Workflow in ComfyUI](assets/matrix-power-nodes-workflow.png)
 
@@ -23,8 +24,8 @@ The first public MATRIX POWER NODES release: two ComfyUI custom nodes and one re
 - Starts with `live=false`, so loading or inspecting the workflow sends no paid request.
 - Keeps the WaveSpeed credential out of the workflow and node input schema.
 
-This is a first-version workflow, not a finished universal dataset system. It is intentionally
-focused on one usable reference-to-dataset path.
+This is Dataset Workflow V1, not a finished universal dataset system. It is intentionally focused
+on one usable reference-to-dataset path.
 
 ## Included
 
@@ -80,8 +81,9 @@ support bundles.
 
 ## Current release boundary
 
-Version 0.1.0 is the first public source release. It is not yet a Comfy Registry or ComfyUI
-Manager package. Install it from GitHub until those channels are explicitly listed here.
+Dataset Workflow V1 is published as package version 0.1.0 and is the first public source release.
+It is not yet a Comfy Registry or ComfyUI Manager package. Install it from GitHub until those
+channels are explicitly listed here.
 
 ## License
 

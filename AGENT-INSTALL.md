@@ -1,8 +1,8 @@
 # Installation contract for AI agents
 
-Install the first MATRIX POWER NODES Dataset Workflow release for a human operator. This
-repository contains only the two nodes required by the Dataset Workflow; do not describe it as
-the complete Matrix Lab custom-node collection.
+Install MATRIX POWER NODES Dataset Workflow V1 (package version 0.1.0) for a human operator. This
+repository contains only the ComfyUI Custom API Nodes built specifically for this Dataset
+Workflow; do not describe it as the complete Matrix Lab custom-node collection.
 
 ## Hard boundaries
 
