@@ -40,8 +40,8 @@ Workflow; do not describe it as the complete Matrix Lab custom-node collection.
 
 ## Credential boundary
 
-The local browser control stores a human-entered WaveSpeed key outside this repository in the
+The local browser control stores a human-entered Kie.ai key outside this repository in the
 ComfyUI user data directory. For LAN, remote, container, or RunPod installations, the operator
-must provide `WAVESPEED_API_KEY` to the ComfyUI server process.
+must provide `KIE_API_KEY` to the ComfyUI server process.
 
-`WAVESPEED_API_KEY` is a variable name, not a credential. Never inspect or echo its value.
+`KIE_API_KEY` is a variable name, not a credential. Never inspect or echo its value.

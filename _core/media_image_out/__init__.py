@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import inspect
 import io
+import json
 
 import numpy as np
 import torch
@@ -26,6 +27,14 @@ class DownloadStream:
 def _path(value, dotted):
     current = value
     for part in str(dotted).split("."):
+        if isinstance(current, str):
+            # Some providers (e.g. kie.ai's recordInfo) nest a JSON-encoded string inside an
+            # otherwise-JSON response body instead of a real nested object. Decode it once so the
+            # remaining path segments can still traverse into it.
+            try:
+                current = json.loads(current)
+            except (TypeError, ValueError):
+                return None
         if not isinstance(current, dict) or part not in current:
             return None
         current = current[part]

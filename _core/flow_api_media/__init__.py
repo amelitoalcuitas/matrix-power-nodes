@@ -603,6 +603,15 @@ async def execute_compiled_node(node_id, provider, route, inputs) -> tuple:
             deadline=deadline,
             on_progress=reference_progress,
         )
+        # Some providers (e.g. kie.ai) route every model through one fixed submit URL and expect
+        # the body shaped as {"model": <literal>, <submit_wrap_field>: {...fields}} instead of
+        # wavespeed-style routing-by-URL with a flat body. Wrap only when the contract asks for it.
+        wrap_field = lifecycle.get("submit_wrap_field")
+        if wrap_field:
+            prepared_payload = {
+                "model": contract.get("model", selected_route),
+                wrap_field: prepared_payload,
+            }
         terminal_result = None
 
         if mode == "sync":

@@ -3128,7 +3128,7 @@
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "title": "HOW TO USE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAPI KEY\nPaste the WaveSpeed key once in the masked field.\nThe saved workflow never contains the raw key.\n\nMODEL\nChoose one route in the MATRIX WaveSpeed API node.\n\nMONEY SAFETY\nLIVE is OFF by default. No paid request runs until enabled.\n\nREFERENCES\nR01 is required. Toggle R02–R08 in the rgthree panel.\nR02–R04 start enabled; R05–R08 start bypassed.\n\nSHOTS\nF01 starts enabled; all other shots start bypassed.\nUse the row panel or the switch above one shot card.\n\nRE-RUN\nChange one prompt to request only that image again.",
+      "title": "HOW TO USE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAPI KEY\nPaste the Kie.ai key once in the masked field.\nThe saved workflow never contains the raw key.\n\nMODEL\nChoose one route in the MATRIX Kie API node.\n\nMONEY SAFETY\nLIVE is OFF by default. No paid request runs until enabled.\n\nREFERENCES\nR01 is required. Toggle R02–R08 in the rgthree panel.\nR02–R04 start enabled; R05–R08 start bypassed.\n\nSHOTS\nF01 starts enabled; all other shots start bypassed.\nUse the row panel or the switch above one shot card.\n\nRE-RUN\nChange one prompt to request only that image again.",
       "properties": {
         "fontSize": 18,
         "fontFamily": "Consolas",
@@ -3832,7 +3832,7 @@
           ]
         }
       ],
-      "title": "MATRIX — WaveSpeed API",
+      "title": "MATRIX — Kie API",
       "properties": {
         "Node name for S&R": "MATRIX_DatasetConfig"
       },
@@ -4532,7 +4532,7 @@
     },
     {
       "id": 2,
-      "title": "02 WaveSpeed API · Model + Safety",
+      "title": "02 Kie API · Model + Safety",
       "bounding": [
         897.1510374330805,
         164.17110794224806,

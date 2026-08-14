@@ -6,15 +6,15 @@ import ipaddress
 from urllib.parse import urlsplit
 
 
-CREDENTIAL_CONTRACTS = {'wavespeed': {'auth': 'bearer',
+CREDENTIAL_CONTRACTS = {'kie': {'auth': 'bearer',
                'auth_fail': (401, 403),
                'auth_prefix': '',
-               'base_url': 'https://api.wavespeed.ai',
-               'env_names': ('WAVESPEED_API_KEY', 'MATRIX_WAVESPEED_KEY'),
+               'base_url': 'https://api.kie.ai',
+               'env_names': ('KIE_API_KEY', 'MATRIX_KIE_KEY'),
                'method': 'GET',
                'ok': (200,),
-               'path': '/api/v3/models'}}
-CREDENTIAL_ROUTES = {'wavespeed': '/matrix/compiled/19c3b69ab6cb840d/wavespeed/key'}
+               'path': '/api/v1/chat/credit'}}
+CREDENTIAL_ROUTES = {'kie': '/matrix/compiled/19c3b69ab6cb840d/kie/key'}
 INTENT_HEADER = 'X-Matrix-Credential-Intent-19c3b69ab6cb840d'
 INTENT_VALUE = 'matrix-compiled-19c3b69ab6cb840d'
 _DENIAL_REASON = ContextVar("matrix_credential_denial_reason", default="forbidden")

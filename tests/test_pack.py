@@ -19,7 +19,7 @@ class PackWiringTests(unittest.TestCase):
             self.assertIn(f"from .nodes.{module} import", pack_source)
 
     def test_route_widget_order_is_published(self):
-        expected = {'MATRIX_DatasetConfig': ['aspect_ratio', 'enable_image_search', 'enable_web_search', 'output_format', 'quality', 'resolution'], 'MATRIX_DatasetImage': ['prompt']}
+        expected = {'MATRIX_DatasetConfig': ['aspect_ratio', 'output_format', 'resolution'], 'MATRIX_DatasetImage': ['prompt']}
         for node_id, route_names in expected.items():
             module = {'MATRIX_DatasetConfig': 'matrix_datasetconfig', 'MATRIX_DatasetImage': 'matrix_datasetimage'}[node_id]
             source = (root / "nodes" / f"{module}.py").read_text(

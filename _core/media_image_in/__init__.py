@@ -163,13 +163,21 @@ class DatasetConfig:
 
     def to_flow_inputs(self, prompt):
         values = dict(self.options)
+        references = self.prepared_references or self.references
         values.update(
             {
                 "live": self.live,
                 "refresh_nonce": "",
                 "model": self.route,
                 "prompt": str(prompt),
-                "images": self.prepared_references or self.references,
+                # Routes for a single provider don't always share one field name for the
+                # reference-image list (wavespeed's three routes all used "images"; kie.ai's use
+                # "image_input" or "input_urls" depending on the route). build_route_payload only
+                # reads whichever alias matches the selected route's own schema, so populating every
+                # known alias here is harmless for routes that don't use it.
+                "images": references,
+                "image_input": references,
+                "input_urls": references,
             }
         )
         return values

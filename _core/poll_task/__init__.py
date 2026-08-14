@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import inspect
+import json
 import math
 import time
 from collections.abc import Mapping
@@ -57,6 +58,14 @@ def _endpoint(specification, **values):
 def _path(value, dotted_path):
     current = value
     for part in dotted_path.split("."):
+        if isinstance(current, str):
+            # Some providers (e.g. kie.ai's recordInfo) nest a JSON-encoded string inside an
+            # otherwise-JSON response body instead of a real nested object. Decode it once so the
+            # remaining path segments can still traverse into it.
+            try:
+                current = json.loads(current)
+            except (TypeError, ValueError):
+                return None
         if not isinstance(current, Mapping) or part not in current:
             return None
         current = current[part]

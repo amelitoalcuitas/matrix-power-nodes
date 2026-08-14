@@ -9,592 +9,197 @@ import threading
 import time
 
 
-RUNTIME_CONTRACTS = {'wavespeed': {'auth': 'bearer',
+RUNTIME_CONTRACTS = {'kie': {'auth': 'bearer',
                'auth_prefix': '',
-               'base_url': 'https://api.wavespeed.ai',
-               'env_names': ('WAVESPEED_API_KEY', 'MATRIX_WAVESPEED_KEY'),
-               'max_download_bytes': 209715200,
-               'provider_fact': {'fetched': '2026-07-29T03:28:03+02:00',
-                                 'generator': 'src/tools/fetch_routes.py',
+               'base_url': 'https://api.kie.ai',
+               'env_names': ('KIE_API_KEY', 'MATRIX_KIE_KEY'),
+               'max_download_bytes': 31457200,
+               'provider_fact': {'fetched': '2026-08-14T00:00:00+00:00',
+                                 'generator': 'hand-authored from docs.kie.ai (createTask, recordInfo, '
+                                              'file-stream-upload) plus third-party pricing research; NOT '
+                                              'machine-fetched by src/tools/fetch_routes.py the way the '
+                                              'wavespeed contract was. The submit/poll/task_id/upload-url '
+                                              'field paths were confirmed against live docs.kie.ai pages. '
+                                              'Per-resolution pricing for nano-banana-2 and gpt-image-2 could '
+                                              'NOT be confirmed on kie.ai\'s own pricing page (blocked by the '
+                                              'fetcher) and is a conservative estimate from third-party '
+                                              'aggregator research -- see each route\'s price_provenance. '
+                                              'Verify against the account dashboard before trusting these as '
+                                              'a hard spend ceiling.',
                                  'lifecycle': {'_note': 'Lifecycle paths appear in no model schema '
                                                         '- they are provider knowledge and live '
                                                         'here exactly once. upload_max_bytes is '
                                                         'the PLATFORM cap; a route may cap lower, '
                                                         'which is why routes carry their own '
                                                         'limits.',
-                                               '_note_download_max_bytes': 'A LOCAL RESOURCE '
-                                                                           'BOUND, not a provider '
-                                                                           'fact. Stated '
-                                                                           'explicitly on '
-                                                                           '2026-07-29 because the '
-                                                                           'compiler had been '
-                                                                           'SILENTLY reusing '
-                                                                           'upload_max_bytes as '
-                                                                           'the output download '
-                                                                           'cap - a different '
-                                                                           'contract that nobody '
-                                                                           'had ever chosen for '
-                                                                           'this purpose. The '
-                                                                           'value is identical to '
-                                                                           'the old implicit one '
-                                                                           'so behaviour is '
-                                                                           'unchanged; what '
-                                                                           'changed is that it is '
-                                                                           'now a visible '
-                                                                           'decision. See the fal '
-                                                                           'entry for the same '
-                                                                           'field and the same '
-                                                                           'reasoning.',
-                                               'balance': 'GET {base_url}/api/v3/balance',
-                                               'download_max_bytes': 209715200,
-                                               'error_path': 'data.error',
-                                               'outputs_path': 'data.outputs',
+                                               '_note_response_envelope': 'Every kie.ai job-API response '
+                                                                          'wraps its payload under a top-level '
+                                                                          '"data" object: {"code","msg","data": '
+                                                                          '{...}}. task_id_path/status_path/'
+                                                                          'error_path/outputs_path below all '
+                                                                          'start with "data." for that reason.',
+                                               '_note_result_json': 'recordInfo returns "resultJson" as a '
+                                                                    'JSON-encoded STRING, not a nested object '
+                                                                    '(e.g. "{\\"resultUrls\\":[...]}"). '
+                                                                    'outputs_path reaches through it as '
+                                                                    'data.resultJson.resultUrls; the dotted-path '
+                                                                    'walkers in poll_task and media_image_out '
+                                                                    'were extended to json.loads a string value '
+                                                                    'mid-traversal to support this.',
+                                               '_note_submit_wrap': 'kie.ai has ONE fixed submit URL for every '
+                                                                    'model (unlike wavespeed, which routes by '
+                                                                    'URL path) and expects the body shaped as '
+                                                                    '{"model": <literal>, "input": {...fields}}. '
+                                                                    'submit_wrap_field names the body key that '
+                                                                    'should hold the route payload; '
+                                                                    'flow_api_media wraps it using each route\'s '
+                                                                    'own "model" literal before submitting.',
+                                               'balance': 'GET {base_url}/api/v1/chat/credit',
+                                               'download_max_bytes': 31457200,
+                                               'error_path': 'data.failMsg',
+                                               'outputs_path': 'data.resultJson.resultUrls',
                                                'poll': 'GET '
-                                                       '{base_url}/api/v3/predictions/{task_id}/result',
-                                               'status_done': ['completed', 'succeeded', 'success'],
-                                               'status_failed': ['failed', 'error'],
-                                               'status_path': 'data.status',
-                                               'submit': 'POST {base_url}/api/v3/{route}',
-                                               'task_id_path': 'data.id',
-                                               'upload': 'POST '
-                                                         '{base_url}/api/v3/media/upload/binary',
-                                               'upload_max_bytes': 209715200,
-                                               'upload_retention_days': 7},
-                                 'provider': 'wavespeed',
-                                 'routes': {'google/nano-banana-2/edit': {'api_path': '/api/v3/google/nano-banana-2/edit',
-                                                                          'fields': {'aspect_ratio': {'description': 'The '
-                                                                                                                     'aspect '
-                                                                                                                     'ratio '
-                                                                                                                     'of '
-                                                                                                                     'the '
-                                                                                                                     'generated '
-                                                                                                                     'media.',
-                                                                                                      'enum': ['1:1',
-                                                                                                               '3:2',
-                                                                                                               '2:3',
-                                                                                                               '3:4',
-                                                                                                               '4:3',
-                                                                                                               '4:5',
-                                                                                                               '5:4',
-                                                                                                               '9:16',
-                                                                                                               '16:9',
-                                                                                                               '21:9',
-                                                                                                               '1:4',
-                                                                                                               '4:1',
-                                                                                                               '1:8',
-                                                                                                               '8:1'],
-                                                                                                      'type': 'string'},
-                                                                                     'enable_base64_output': {'description': 'If '
-                                                                                                                             'set '
-                                                                                                                             'to '
-                                                                                                                             '`true`, '
-                                                                                                                             'the '
-                                                                                                                             "prediction's "
-                                                                                                                             '`output` '
-                                                                                                                             'strings '
-                                                                                                                             'are '
-                                                                                                                             'returned '
-                                                                                                                             'as '
-                                                                                                                             '**naked '
-                                                                                                                             'base64** '
-                                                                                                                             '(no '
-                                                                                                                             '`data:<mime>;base64,` '
-                                                                                                                             'prefix). '
-                                                                                                                             'When '
-                                                                                                                             '`false` '
-                                                                                                                             '(default), '
-                                                                                                                             'outputs '
-                                                                                                                             'are '
-                                                                                                                             'returned '
-                                                                                                                             'as '
-                                                                                                                             'URLs '
-                                                                                                                             'pointing '
-                                                                                                                             'to '
-                                                                                                                             'our '
-                                                                                                                             'CDN.',
-                                                                                                              'disabled': True,
-                                                                                                              'type': 'boolean'},
-                                                                                     'enable_image_search': {'default': False,
-                                                                                                             'description': 'If '
-                                                                                                                            'enabled, '
-                                                                                                                            'the '
-                                                                                                                            'model '
-                                                                                                                            'will '
-                                                                                                                            'use '
-                                                                                                                            'image '
-                                                                                                                            'search '
-                                                                                                                            'to '
-                                                                                                                            'enhance '
-                                                                                                                            'the '
-                                                                                                                            'generation '
-                                                                                                                            'with '
-                                                                                                                            'real-time '
-                                                                                                                            'information.',
-                                                                                                             'type': 'boolean'},
-                                                                                     'enable_sync_mode': {'description': 'If '
-                                                                                                                         'set '
-                                                                                                                         'to '
-                                                                                                                         '`true`, '
-                                                                                                                         'the '
-                                                                                                                         'request '
-                                                                                                                         'attempts '
-                                                                                                                         'to '
-                                                                                                                         'wait '
-                                                                                                                         'for '
-                                                                                                                         'the '
-                                                                                                                         'generated '
-                                                                                                                         'result '
-                                                                                                                         'and '
-                                                                                                                         'return '
-                                                                                                                         'outputs '
-                                                                                                                         'in '
-                                                                                                                         'the '
-                                                                                                                         'same '
-                                                                                                                         'response. '
-                                                                                                                         'If '
-                                                                                                                         'the '
-                                                                                                                         'result '
-                                                                                                                         'is '
-                                                                                                                         'not '
-                                                                                                                         'ready '
-                                                                                                                         'within '
-                                                                                                                         'the '
-                                                                                                                         'sync '
-                                                                                                                         'wait '
-                                                                                                                         'window, '
-                                                                                                                         'the '
-                                                                                                                         'API '
-                                                                                                                         'can '
-                                                                                                                         'return '
-                                                                                                                         'a '
-                                                                                                                         'timeout '
-                                                                                                                         'bo',
-                                                                                                          'disabled': True,
-                                                                                                          'type': 'boolean'},
-                                                                                     'enable_web_search': {'default': False,
-                                                                                                           'description': 'If '
-                                                                                                                          'enabled, '
-                                                                                                                          'the '
-                                                                                                                          'model '
-                                                                                                                          'will '
-                                                                                                                          'use '
-                                                                                                                          'web '
-                                                                                                                          'search '
-                                                                                                                          'to '
-                                                                                                                          'enhance '
-                                                                                                                          'the '
-                                                                                                                          'generation '
-                                                                                                                          'with '
-                                                                                                                          'real-time '
-                                                                                                                          'information.',
-                                                                                                           'type': 'boolean'},
-                                                                                     'images': {'description': 'List '
-                                                                                                               'of '
-                                                                                                               'URLs '
-                                                                                                               'of '
-                                                                                                               'input '
-                                                                                                               'images '
-                                                                                                               'for '
-                                                                                                               'editing. '
-                                                                                                               'The '
-                                                                                                               'maximum '
-                                                                                                               'number '
-                                                                                                               'of '
-                                                                                                               'images '
-                                                                                                               'is '
-                                                                                                               '14.',
-                                                                                                'type': 'array'},
-                                                                                     'output_format': {'default': 'png',
-                                                                                                       'description': 'The '
-                                                                                                                      'format '
-                                                                                                                      'of '
-                                                                                                                      'the '
-                                                                                                                      'output '
-                                                                                                                      'image.',
-                                                                                                       'enum': ['png',
-                                                                                                                'jpeg'],
+                                                       '{base_url}/api/v1/jobs/recordInfo?taskId={task_id}',
+                                               'status_done': ['success'],
+                                               'status_failed': ['fail'],
+                                               'status_path': 'data.state',
+                                               'status_queued': ['waiting', 'queuing'],
+                                               'submit': 'POST {base_url}/api/v1/jobs/createTask',
+                                               'submit_wrap_field': 'input',
+                                               'task_id_path': 'data.taskId',
+                                               'upload': 'POST {base_url}/api/file-stream-upload',
+                                               'upload_extra_fields': {'uploadPath': 'matrix-power-nodes'},
+                                               'upload_max_bytes': 31457200,
+                                               'upload_retention_days': 1,
+                                               'upload_url_paths': ('data.downloadUrl',
+                                                                     'downloadUrl',
+                                                                     'data.url',
+                                                                     'url')},
+                                 'provider': 'kie',
+                                 'routes': {'google/nano-banana-2/edit': {'api_path': '/api/v1/jobs/createTask',
+                                                                          'model': 'nano-banana-2',
+                                                                          'fields': {'aspect_ratio': {'default': 'auto',
+                                                                                                       'description': 'The aspect ratio of the generated media.',
+                                                                                                       'enum': ['16:9',
+                                                                                                                '1:1',
+                                                                                                                '1:4',
+                                                                                                                '1:8',
+                                                                                                                '21:9',
+                                                                                                                '2:3',
+                                                                                                                '3:2',
+                                                                                                                '3:4',
+                                                                                                                '4:1',
+                                                                                                                '4:3',
+                                                                                                                '4:5',
+                                                                                                                '5:4',
+                                                                                                                '8:1',
+                                                                                                                '9:16',
+                                                                                                                'auto'],
                                                                                                        'type': 'string'},
-                                                                                     'prompt': {'description': 'The '
-                                                                                                               'positive '
-                                                                                                               'prompt '
-                                                                                                               'for '
-                                                                                                               'the '
-                                                                                                               'generation.',
-                                                                                                'type': 'string'},
-                                                                                     'resolution': {'default': '1k',
-                                                                                                    'description': 'The '
-                                                                                                                   'resolution '
-                                                                                                                   'of '
-                                                                                                                   'the '
-                                                                                                                   'output '
-                                                                                                                   'image.',
-                                                                                                    'enum': ['0.5k',
-                                                                                                             '1k',
-                                                                                                             '2k',
-                                                                                                             '4k'],
-                                                                                                    'type': 'string'}},
-                                                                          'formula': '{"total_price": '
-                                                                                     '((resolution '
-                                                                                     '= "0.5k" ? '
-                                                                                     '45000 : '
-                                                                                     'base_price * '
-                                                                                     '(resolution '
-                                                                                     '= "2k" ? 1.5 '
-                                                                                     ': '
-                                                                                     '(resolution '
-                                                                                     '= "4k" ? 2 : '
-                                                                                     '1))) + '
-                                                                                     '(enable_web_search '
-                                                                                     '? 14000 : 0) '
-                                                                                     '+ '
-                                                                                     '(enable_image_search '
-                                                                                     '? 14000 : '
-                                                                                     '0))  }',
-                                                                          'price': 0.07,
-                                                                          'price_provenance': {'fetched': '2026-07-29T03:28:03+02:00',
-                                                                                               'field': 'base_price',
-                                                                                               'source': 'catalogue'},
-                                                                          'required': ['prompt',
-                                                                                       'images'],
-                                                                          'type': 'image-to-image'},
-                                            'google/nano-banana-pro/edit': {'api_path': '/api/v3/google/nano-banana-pro/edit',
-                                                                            'fields': {'aspect_ratio': {'description': 'The '
-                                                                                                                       'aspect '
-                                                                                                                       'ratio '
-                                                                                                                       'of '
-                                                                                                                       'the '
-                                                                                                                       'generated '
-                                                                                                                       'media.',
-                                                                                                        'enum': ['1:1',
-                                                                                                                 '3:2',
-                                                                                                                 '2:3',
-                                                                                                                 '3:4',
-                                                                                                                 '4:3',
-                                                                                                                 '4:5',
-                                                                                                                 '5:4',
-                                                                                                                 '9:16',
-                                                                                                                 '16:9',
-                                                                                                                 '21:9'],
+                                                                                     'image_input': {'description': 'List of URLs of input reference images for editing. Up to 14 images.',
+                                                                                                      'type': 'array'},
+                                                                                     'output_format': {'default': 'jpg',
+                                                                                                        'description': 'The format of the output image.',
+                                                                                                        'enum': ['jpg', 'png'],
                                                                                                         'type': 'string'},
-                                                                                       'enable_base64_output': {'description': 'If '
-                                                                                                                               'set '
-                                                                                                                               'to '
-                                                                                                                               '`true`, '
-                                                                                                                               'the '
-                                                                                                                               "prediction's "
-                                                                                                                               '`output` '
-                                                                                                                               'strings '
-                                                                                                                               'are '
-                                                                                                                               'returned '
-                                                                                                                               'as '
-                                                                                                                               '**naked '
-                                                                                                                               'base64** '
-                                                                                                                               '(no '
-                                                                                                                               '`data:<mime>;base64,` '
-                                                                                                                               'prefix). '
-                                                                                                                               'When '
-                                                                                                                               '`false` '
-                                                                                                                               '(default), '
-                                                                                                                               'outputs '
-                                                                                                                               'are '
-                                                                                                                               'returned '
-                                                                                                                               'as '
-                                                                                                                               'URLs '
-                                                                                                                               'pointing '
-                                                                                                                               'to '
-                                                                                                                               'our '
-                                                                                                                               'CDN.',
-                                                                                                                'disabled': True,
-                                                                                                                'type': 'boolean'},
-                                                                                       'enable_sync_mode': {'description': 'If '
-                                                                                                                           'set '
-                                                                                                                           'to '
-                                                                                                                           '`true`, '
-                                                                                                                           'the '
-                                                                                                                           'request '
-                                                                                                                           'attempts '
-                                                                                                                           'to '
-                                                                                                                           'wait '
-                                                                                                                           'for '
-                                                                                                                           'the '
-                                                                                                                           'generated '
-                                                                                                                           'result '
-                                                                                                                           'and '
-                                                                                                                           'return '
-                                                                                                                           'outputs '
-                                                                                                                           'in '
-                                                                                                                           'the '
-                                                                                                                           'same '
-                                                                                                                           'response. '
-                                                                                                                           'If '
-                                                                                                                           'the '
-                                                                                                                           'result '
-                                                                                                                           'is '
-                                                                                                                           'not '
-                                                                                                                           'ready '
-                                                                                                                           'within '
-                                                                                                                           'the '
-                                                                                                                           'sync '
-                                                                                                                           'wait '
-                                                                                                                           'window, '
-                                                                                                                           'the '
-                                                                                                                           'API '
-                                                                                                                           'can '
-                                                                                                                           'return '
-                                                                                                                           'a '
-                                                                                                                           'timeout '
-                                                                                                                           'bo',
-                                                                                                            'disabled': True,
-                                                                                                            'type': 'boolean'},
-                                                                                       'images': {'description': 'List '
-                                                                                                                 'of '
-                                                                                                                 'URLs '
-                                                                                                                 'of '
-                                                                                                                 'input '
-                                                                                                                 'images '
-                                                                                                                 'for '
-                                                                                                                 'editing. '
-                                                                                                                 'The '
-                                                                                                                 'maximum '
-                                                                                                                 'number '
-                                                                                                                 'of '
-                                                                                                                 'images '
-                                                                                                                 'is '
-                                                                                                                 '14.',
-                                                                                                  'type': 'array'},
-                                                                                       'output_format': {'default': 'png',
-                                                                                                         'description': 'The '
-                                                                                                                        'format '
-                                                                                                                        'of '
-                                                                                                                        'the '
-                                                                                                                        'output '
-                                                                                                                        'image.',
-                                                                                                         'enum': ['png',
-                                                                                                                  'jpeg'],
+                                                                                     'prompt': {'description': 'The positive prompt for the generation.',
+                                                                                                'type': 'string'},
+                                                                                     'resolution': {'default': '1K',
+                                                                                                    'description': 'The resolution of the output image.',
+                                                                                                    'enum': ['1K', '2K', '4K'],
+                                                                                                    'type': 'string'}},
+                                                                          'formula': None,
+                                                                          'price': 0.02,
+                                                                          'price_provenance': {'fetched': '2026-08-14T00:00:00+00:00',
+                                                                                               'field': 'base_price',
+                                                                                               'source': 'UNCONFIRMED -- kie.ai marketing page advertises '
+                                                                                                         '"from $0.04" and third-party aggregator research put it '
+                                                                                                         'near $0.02/image; kie.ai\'s own pricing page could not '
+                                                                                                         'be fetched. No confirmed per-resolution breakdown exists, '
+                                                                                                         'so this is treated as a flat price (formula=None). Verify '
+                                                                                                         'on the kie.ai dashboard before a live run.'},
+                                                                          'required': ['prompt', 'image_input'],
+                                                                          'type': 'image-to-image'},
+                                            'google/nano-banana-pro/edit': {'api_path': '/api/v1/jobs/createTask',
+                                                                            'model': 'nano-banana-pro',
+                                                                            'fields': {'aspect_ratio': {'default': '1:1',
+                                                                                                         'description': 'The aspect ratio of the generated media.',
+                                                                                                         'enum': ['16:9',
+                                                                                                                  '1:1',
+                                                                                                                  '21:9',
+                                                                                                                  '2:3',
+                                                                                                                  '3:2',
+                                                                                                                  '3:4',
+                                                                                                                  '4:3',
+                                                                                                                  '4:5',
+                                                                                                                  '5:4',
+                                                                                                                  '9:16',
+                                                                                                                  'auto'],
                                                                                                          'type': 'string'},
-                                                                                       'prompt': {'description': 'The '
-                                                                                                                 'positive '
-                                                                                                                 'prompt '
-                                                                                                                 'for '
-                                                                                                                 'the '
-                                                                                                                 'generation.',
+                                                                                       'image_input': {'description': 'List of URLs of input reference images for editing. Up to 8 images.',
+                                                                                                        'type': 'array'},
+                                                                                       'output_format': {'default': 'png',
+                                                                                                          'description': 'The format of the output image.',
+                                                                                                          'enum': ['png', 'jpg'],
+                                                                                                          'type': 'string'},
+                                                                                       'prompt': {'description': 'The positive prompt for the generation.',
                                                                                                   'type': 'string'},
-                                                                                       'resolution': {'default': '1k',
-                                                                                                      'description': 'The '
-                                                                                                                     'resolution '
-                                                                                                                     'of '
-                                                                                                                     'the '
-                                                                                                                     'output '
-                                                                                                                     'image.',
-                                                                                                      'enum': ['1k',
-                                                                                                               '2k',
-                                                                                                               '4k'],
+                                                                                       'resolution': {'default': '1K',
+                                                                                                      'description': 'The resolution of the output image.',
+                                                                                                      'enum': ['1K', '2K', '4K'],
                                                                                                       'type': 'string'}},
-                                                                            'formula': '{"total_price": '
-                                                                                       'base_price '
-                                                                                       '* '
-                                                                                       '(resolution '
-                                                                                       '= "2k" ? 1 '
-                                                                                       ': '
-                                                                                       '(resolution '
-                                                                                       '= "4k" ? '
-                                                                                       '12/7 : '
-                                                                                       '1))}',
-                                                                            'price': 0.14,
-                                                                            'price_provenance': {'fetched': '2026-07-29T03:28:03+02:00',
+                                                                            'formula': '{"total_price": base_price * (resolution = "4K" ? 4/3 : 1)}',
+                                                                            'price': 0.09,
+                                                                            'price_provenance': {'fetched': '2026-08-14T00:00:00+00:00',
                                                                                                  'field': 'base_price',
-                                                                                                 'source': 'catalogue'},
-                                                                            'required': ['prompt',
-                                                                                         'images'],
+                                                                                                 'source': 'Third-party aggregator research (aifreeapi.com), corroborated '
+                                                                                                           'across independent sources at $0.09 for 1K/2K and $0.12 for 4K '
+                                                                                                           '-- NOT scraped directly from kie.ai\'s own pricing page (blocked). '
+                                                                                                           'Verify on the kie.ai dashboard before a live run.'},
+                                                                            'required': ['prompt', 'image_input'],
                                                                             'type': 'image-to-image'},
-                                            'openai/gpt-image-2/edit': {'api_path': '/api/v3/openai/gpt-image-2/edit',
-                                                                        'fields': {'aspect_ratio': {'description': 'The '
-                                                                                                                   'aspect '
-                                                                                                                   'ratio '
-                                                                                                                   'of '
-                                                                                                                   'the '
-                                                                                                                   'generated '
-                                                                                                                   'image. '
-                                                                                                                   'Auto-detected '
-                                                                                                                   'from '
-                                                                                                                   'input '
-                                                                                                                   'image '
-                                                                                                                   'if '
-                                                                                                                   'not '
-                                                                                                                   'specified.',
-                                                                                                    'enum': ['1:1',
-                                                                                                             '1:2',
-                                                                                                             '2:1',
-                                                                                                             '1:3',
-                                                                                                             '3:1',
-                                                                                                             '2:3',
-                                                                                                             '3:2',
-                                                                                                             '3:4',
-                                                                                                             '4:3',
-                                                                                                             '4:5',
-                                                                                                             '5:4',
-                                                                                                             '9:16',
-                                                                                                             '16:9',
-                                                                                                             '9:21',
-                                                                                                             '21:9'],
-                                                                                                    'type': 'string'},
-                                                                                   'enable_base64_output': {'description': 'If '
-                                                                                                                           'set '
-                                                                                                                           'to '
-                                                                                                                           '`true`, '
-                                                                                                                           'the '
-                                                                                                                           "prediction's "
-                                                                                                                           '`output` '
-                                                                                                                           'strings '
-                                                                                                                           'are '
-                                                                                                                           'returned '
-                                                                                                                           'as '
-                                                                                                                           '**naked '
-                                                                                                                           'base64** '
-                                                                                                                           '(no '
-                                                                                                                           '`data:<mime>;base64,` '
-                                                                                                                           'prefix). '
-                                                                                                                           'When '
-                                                                                                                           '`false` '
-                                                                                                                           '(default), '
-                                                                                                                           'outputs '
-                                                                                                                           'are '
-                                                                                                                           'returned '
-                                                                                                                           'as '
-                                                                                                                           'URLs '
-                                                                                                                           'pointing '
-                                                                                                                           'to '
-                                                                                                                           'our '
-                                                                                                                           'CDN.',
-                                                                                                            'disabled': True,
-                                                                                                            'type': 'boolean'},
-                                                                                   'enable_sync_mode': {'description': 'If '
-                                                                                                                       'set '
-                                                                                                                       'to '
-                                                                                                                       '`true`, '
-                                                                                                                       'the '
-                                                                                                                       'request '
-                                                                                                                       'attempts '
-                                                                                                                       'to '
-                                                                                                                       'wait '
-                                                                                                                       'for '
-                                                                                                                       'the '
-                                                                                                                       'generated '
-                                                                                                                       'result '
-                                                                                                                       'and '
-                                                                                                                       'return '
-                                                                                                                       'outputs '
-                                                                                                                       'in '
-                                                                                                                       'the '
-                                                                                                                       'same '
-                                                                                                                       'response. '
-                                                                                                                       'If '
-                                                                                                                       'the '
-                                                                                                                       'result '
-                                                                                                                       'is '
-                                                                                                                       'not '
-                                                                                                                       'ready '
-                                                                                                                       'within '
-                                                                                                                       'the '
-                                                                                                                       'sync '
-                                                                                                                       'wait '
-                                                                                                                       'window, '
-                                                                                                                       'the '
-                                                                                                                       'API '
-                                                                                                                       'can '
-                                                                                                                       'return '
-                                                                                                                       'a '
-                                                                                                                       'timeout '
-                                                                                                                       'bo',
-                                                                                                        'disabled': True,
-                                                                                                        'type': 'boolean'},
-                                                                                   'images': {'description': 'List '
-                                                                                                             'of '
-                                                                                                             'URLs '
-                                                                                                             'of '
-                                                                                                             'input '
-                                                                                                             'images '
-                                                                                                             'for '
-                                                                                                             'editing.',
-                                                                                              'type': 'array'},
-                                                                                   'output_format': {'default': 'png',
-                                                                                                     'description': 'The '
-                                                                                                                    'format '
-                                                                                                                    'of '
-                                                                                                                    'the '
-                                                                                                                    'output '
-                                                                                                                    'image.',
-                                                                                                     'enum': ['png',
-                                                                                                              'jpeg',
-                                                                                                              'webp'],
+                                            'openai/gpt-image-2/edit': {'api_path': '/api/v1/jobs/createTask',
+                                                                        'model': 'gpt-image-2-image-to-image',
+                                                                        'fields': {'aspect_ratio': {'default': 'auto',
+                                                                                                     'description': 'The aspect ratio of the generated image. Auto-detected from input image if not specified.',
+                                                                                                     'enum': ['16:9',
+                                                                                                              '1:1',
+                                                                                                              '1:2',
+                                                                                                              '1:3',
+                                                                                                              '21:9',
+                                                                                                              '2:1',
+                                                                                                              '2:3',
+                                                                                                              '3:1',
+                                                                                                              '3:2',
+                                                                                                              '3:4',
+                                                                                                              '4:3',
+                                                                                                              '4:5',
+                                                                                                              '5:4',
+                                                                                                              '9:16',
+                                                                                                              '9:21',
+                                                                                                              'auto'],
                                                                                                      'type': 'string'},
-                                                                                   'prompt': {'description': 'The '
-                                                                                                             'positive '
-                                                                                                             'prompt '
-                                                                                                             'for '
-                                                                                                             'the '
-                                                                                                             'generation.',
+                                                                                   'input_urls': {'description': 'List of URLs of input images for editing. Up to 16 images.',
+                                                                                                   'type': 'array'},
+                                                                                   'prompt': {'description': 'The positive prompt for the generation.',
                                                                                               'type': 'string'},
-                                                                                   'quality': {'default': 'medium',
-                                                                                               'description': 'The '
-                                                                                                              'quality '
-                                                                                                              'of '
-                                                                                                              'the '
-                                                                                                              'generated '
-                                                                                                              'image. '
-                                                                                                              'Higher '
-                                                                                                              'quality '
-                                                                                                              'costs '
-                                                                                                              'more.',
-                                                                                               'enum': ['low',
-                                                                                                        'medium',
-                                                                                                        'high'],
-                                                                                               'type': 'string'},
-                                                                                   'resolution': {'default': '1k',
-                                                                                                  'description': 'The '
-                                                                                                                 'resolution '
-                                                                                                                 'of '
-                                                                                                                 'the '
-                                                                                                                 'output '
-                                                                                                                 'image.',
-                                                                                                  'enum': ['1k',
-                                                                                                           '2k',
-                                                                                                           '4k'],
+                                                                                   'resolution': {'default': '1K',
+                                                                                                  'description': 'The resolution of the output image.',
+                                                                                                  'enum': ['1K', '2K', '4K'],
                                                                                                   'type': 'string'}},
-                                                                        'formula': '{"total_price": '
-                                                                                   '((quality = '
-                                                                                   '"low") ? '
-                                                                                   '(resolution = '
-                                                                                   '"4k" ? 40000 : '
-                                                                                   '(resolution = '
-                                                                                   '"2k" ? 30000 : '
-                                                                                   '20000)) : '
-                                                                                   '((quality = '
-                                                                                   '"high") ? '
-                                                                                   '(resolution = '
-                                                                                   '"4k" ? 730000 '
-                                                                                   ': (resolution '
-                                                                                   '= "2k" ? '
-                                                                                   '410000 : '
-                                                                                   '230000)) : '
-                                                                                   '(resolution = '
-                                                                                   '"4k" ? 190000 '
-                                                                                   ': (resolution '
-                                                                                   '= "2k" ? '
-                                                                                   '110000 : '
-                                                                                   '70000)))) + '
-                                                                                   '(($count(images) '
-                                                                                   '- 1) * 12000)}',
-                                                                        'price': 0.07,
-                                                                        'price_provenance': {'fetched': '2026-07-29T03:28:03+02:00',
+                                                                        'formula': '{"total_price": base_price * (resolution = "2K" ? 5/3 : (resolution = "4K" ? 2 : 1))}',
+                                                                        'price': 0.03,
+                                                                        'price_provenance': {'fetched': '2026-08-14T00:00:00+00:00',
                                                                                              'field': 'base_price',
-                                                                                             'source': 'catalogue'},
-                                                                        'required': ['prompt',
-                                                                                     'images'],
+                                                                                             'source': 'UNCONFIRMED for kie.ai specifically -- no kie.ai-specific price could be '
+                                                                                                       'located. Uses general GPT-Image-2 market pricing ($0.03/$0.05/$0.06 for '
+                                                                                                       '1K/2K/4K) as a conservative placeholder. Verify on the kie.ai dashboard '
+                                                                                                       'before a live run; this route\'s route_max_costs may be wrong.'},
+                                                                        'required': ['prompt', 'input_urls'],
                                                                         'type': 'image-to-image'}}},
-               'route_max_costs': {'google/nano-banana-2/edit': 0.168,
-                                   'google/nano-banana-pro/edit': 0.24,
-                                   'openai/gpt-image-2/edit': 0.886}}}
+               'route_max_costs': {'google/nano-banana-2/edit': 0.02,
+                                   'google/nano-banana-pro/edit': 0.12,
+                                   'openai/gpt-image-2/edit': 0.06}}}
 _PACK_ID = '19c3b69ab6cb840d'
 _WRITE_LOCK = threading.Lock()
 _CACHES = {}
@@ -713,12 +318,20 @@ async def _upload_large_file(
         )
     boundary = "----MatrixCompiled" + hashlib.sha256(data).hexdigest()[:24]
     safe_name = Path(str(filename)).name.replace('"', "")
+    extra_parts = [
+        (
+            f"--{boundary}\r\n"
+            f'Content-Disposition: form-data; name="{field_name}"\r\n\r\n'
+            f"{field_value}\r\n"
+        ).encode("utf-8")
+        for field_name, field_value in lifecycle.get("upload_extra_fields", {}).items()
+    ]
     prefix = (
         f"--{boundary}\r\n"
         f'Content-Disposition: form-data; name="file"; filename="{safe_name}"\r\n'
         f"Content-Type: {content_type}\r\n\r\n"
     ).encode("ascii")
-    body = prefix + data + f"\r\n--{boundary}--\r\n".encode("ascii")
+    body = b"".join(extra_parts) + prefix + data + f"\r\n--{boundary}--\r\n".encode("ascii")
     headers = dict(auth_headers(credential))
     headers["Content-Type"] = f"multipart/form-data; boundary={boundary}"
     response = await request(
@@ -735,11 +348,12 @@ async def _upload_large_file(
         decoded = json.loads(response.body)
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise EmptyOrMalformedSuccessError("upload response was not valid JSON") from exc
-    url = (
-        _path(decoded, "data.download_url")
-        or _path(decoded, "data.url")
-        or _path(decoded, "url")
-    )
+    url_paths = lifecycle.get("upload_url_paths") or ("data.download_url", "data.url", "url")
+    url = None
+    for dotted in url_paths:
+        url = _path(decoded, dotted)
+        if url:
+            break
     if not isinstance(url, str) or not url.startswith(("https://", "http://")):
         raise EmptyOrMalformedSuccessError("upload response contained no usable URL")
     retention = int(lifecycle.get("upload_retention_days", 0))

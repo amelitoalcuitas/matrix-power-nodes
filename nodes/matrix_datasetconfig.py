@@ -4,17 +4,14 @@ from __future__ import annotations
 from .._core.media_image_in import make_reference_set, prepare_dataset_config
 
 NODE_ID = 'MATRIX_DatasetConfig'
-PROVIDER = 'wavespeed'
+PROVIDER = 'kie'
 ROUTES = ('google/nano-banana-pro/edit', 'google/nano-banana-2/edit', 'openai/gpt-image-2/edit')
 SCHEMA_WIDGETS = {
-    'aspect_ratio': (['16:9', '1:1', '1:2', '1:3', '1:4', '1:8', '21:9', '2:1', '2:3', '3:1', '3:2', '3:4', '4:1', '4:3', '4:5', '5:4', '8:1', '9:16', '9:21'], {'tooltip': 'The aspect ratio of the generated media.'}),
-    'enable_image_search': ('BOOLEAN', {'default': False, 'tooltip': 'If enabled, the model will use image search to enhance the generation with real-time information.'}),
-    'enable_web_search': ('BOOLEAN', {'default': False, 'tooltip': 'If enabled, the model will use web search to enhance the generation with real-time information.'}),
-    'output_format': (['jpeg', 'png', 'webp'], {'default': 'png', 'tooltip': 'The format of the output image.'}),
-    'quality': (['high', 'low', 'medium'], {'default': 'medium', 'tooltip': 'The quality of the generated image. Higher quality costs more.'}),
-    'resolution': (['0.5k', '1k', '2k', '4k'], {'default': '1k', 'tooltip': 'The resolution of the output image.'}),
+    'aspect_ratio': (['16:9', '1:1', '1:2', '1:3', '1:4', '1:8', '21:9', '2:1', '2:3', '3:1', '3:2', '3:4', '4:1', '4:3', '4:5', '5:4', '8:1', '9:16', '9:21', 'auto'], {'tooltip': 'The aspect ratio of the generated media.'}),
+    'output_format': (['jpg', 'png'], {'default': 'png', 'tooltip': 'The format of the output image.'}),
+    'resolution': (['1K', '2K', '4K'], {'default': '1K', 'tooltip': 'The resolution of the output image.'}),
 }
-OPTION_NAMES = ('aspect_ratio', 'enable_image_search', 'enable_web_search', 'output_format', 'quality', 'resolution')
+OPTION_NAMES = ('aspect_ratio', 'output_format', 'resolution')
 
 
 class MATRIXDatasetConfig:
@@ -41,10 +38,7 @@ class MATRIXDatasetConfig:
                 "image_13": ("IMAGE", {"forceInput": True}),
                 "image_14": ("IMAGE", {"forceInput": True}),
                 'aspect_ratio': SCHEMA_WIDGETS['aspect_ratio'],
-                'enable_image_search': SCHEMA_WIDGETS['enable_image_search'],
-                'enable_web_search': SCHEMA_WIDGETS['enable_web_search'],
                 'output_format': SCHEMA_WIDGETS['output_format'],
-                'quality': SCHEMA_WIDGETS['quality'],
                 'resolution': SCHEMA_WIDGETS['resolution'],
             },
         }
@@ -53,7 +47,7 @@ class MATRIXDatasetConfig:
     RETURN_NAMES = ("config",)
     FUNCTION = "execute"
     CATEGORY = "MATRIX POWER NODES/api/dataset"
-    DESCRIPTION = 'Native IMAGE references in; immutable WaveSpeed dataset config out. Different source dimensions are preserved independently.'
+    DESCRIPTION = 'Native IMAGE references in; immutable Kie.ai dataset config out. Different source dimensions are preserved independently.'
 
     async def execute(self, **inputs):
         options = {
@@ -87,4 +81,4 @@ class MATRIXDatasetConfig:
 
 
 NODE_CLASS_MAPPINGS = {NODE_ID: MATRIXDatasetConfig}
-NODE_DISPLAY_NAME_MAPPINGS = {NODE_ID: 'MATRIX POWER NODES - WaveSpeed Matrix API'}
+NODE_DISPLAY_NAME_MAPPINGS = {NODE_ID: 'MATRIX POWER NODES - Kie Matrix API'}

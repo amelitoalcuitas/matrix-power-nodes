@@ -11,7 +11,7 @@ You need:
 - a working ComfyUI installation;
 - [rgthree-comfy](https://github.com/rgthree/rgthree-comfy) for the workflow switches;
 - Git, or the ability to download and extract a ZIP;
-- a WaveSpeed account and API key only when you intentionally run paid generations.
+- a Kie.ai account and API key only when you intentionally run paid generations.
 
 Loading and inspecting the workflow is free while `live=false`.
 
@@ -49,7 +49,7 @@ Do not leave an extra nested folder such as
 1. Restart the ComfyUI server completely.
 2. Refresh the browser.
 3. Double-click the canvas and search for:
-   - `MATRIX POWER NODES - WaveSpeed Matrix API`
+   - `MATRIX POWER NODES - Kie Matrix API`
    - `MATRIX POWER NODES - Dataset Image`
 4. Load `workflows/matrix-power-nodes-ai-dataset.json`.
 5. Confirm that ComfyUI reports no missing node types.
@@ -63,11 +63,11 @@ verify the folder layout above. This pack intentionally has no pip dependencies.
 1. Add one reference image.
 2. Leave all but one prompt card bypassed.
 3. Keep `live=false` and queue once to verify the dry-run blocker.
-4. On a local, single-user installation, use the visible `WaveSpeed Key` control.
+4. On a local, single-user installation, use the visible `Kie.ai Key` control.
 5. Review the selected provider model, resolution, enabled shot, and maximum cost.
 6. Set `live=true` only when you deliberately authorize the paid operation.
 
-For LAN, remote, container, or RunPod installations, set `WAVESPEED_API_KEY` in the ComfyUI server
+For LAN, remote, container, or RunPod installations, set `KIE_API_KEY` in the ComfyUI server
 process environment. Never paste a credential into a workflow, prompt, issue, screenshot, or log.
 
 ## Update

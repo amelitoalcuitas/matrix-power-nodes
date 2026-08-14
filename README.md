@@ -5,7 +5,7 @@
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
 Dataset Workflow V1 (package version 0.1.0): two ComfyUI Custom API Nodes and one
-ready-to-configure 25-shot workflow for creating consistent AI image datasets through WaveSpeed.
+ready-to-configure 25-shot workflow for creating consistent AI image datasets through Kie.ai.
 
 > [!IMPORTANT]
 > This repository is **Dataset Workflow V1**. It contains **only the ComfyUI Custom API Nodes
@@ -22,7 +22,7 @@ ready-to-configure 25-shot workflow for creating consistent AI image datasets th
 - Keeps every prompt card independently cached.
 - Executes enabled shots sequentially, with one admitted API operation at a time.
 - Starts with `live=false`, so loading or inspecting the workflow sends no paid request.
-- Keeps the WaveSpeed credential out of the workflow and node input schema.
+- Keeps the Kie.ai credential out of the workflow and node input schema.
 
 This is Dataset Workflow V1, not a finished universal dataset system. It is intentionally focused
 on one usable reference-to-dataset path.
@@ -31,7 +31,7 @@ on one usable reference-to-dataset path.
 
 | Item | Purpose |
 |---|---|
-| `MATRIX_DatasetConfig` | Collect references and select the shared WaveSpeed model configuration |
+| `MATRIX_DatasetConfig` | Collect references and select the shared Kie.ai model configuration |
 | `MATRIX_DatasetImage` | Execute one independently prompted dataset image operation |
 | `workflows/matrix-power-nodes-ai-dataset.json` | Ready-to-configure 25-shot Face/Body workflow |
 | rgthree controls | Row-level and individual-shot bypass controls |
@@ -59,7 +59,7 @@ credentials, or starting a paid run.
 4. Load `workflows/matrix-power-nodes-ai-dataset.json`.
 5. Add at least one reference image.
 6. Keep `live=false` while checking the graph.
-7. Enter the WaveSpeed key through the visible `WaveSpeed Key` control on a local installation.
+7. Enter the Kie.ai key through the visible `Kie.ai Key` control on a local installation.
 8. Enable only the shots you intend to buy, then set `live=true` when you deliberately authorize
    the run.
 
@@ -68,7 +68,7 @@ Pillow, aiohttp, or ComfyUI for this repository.
 
 ## Credential and cost safety
 
-No WaveSpeed API key is included in this repository. `WAVESPEED_API_KEY` is only the supported
+No Kie.ai API key is included in this repository. `KIE_API_KEY` is only the supported
 environment-variable name for LAN, remote, container, or RunPod installations.
 
 Every enabled prompt is a separate paid provider operation. A lost submit response may already

@@ -1,6 +1,6 @@
 import { app } from "../../scripts/app.js";
 
-const KEY_CONFIG = {"MATRIX_DatasetConfig":{"intentHeader":"X-Matrix-Credential-Intent-19c3b69ab6cb840d","intentValue":"matrix-compiled-19c3b69ab6cb840d","provider":"wavespeed","route":"/matrix/compiled/19c3b69ab6cb840d/wavespeed/key"}};
+const KEY_CONFIG = {"MATRIX_DatasetConfig":{"intentHeader":"X-Matrix-Credential-Intent-19c3b69ab6cb840d","intentValue":"matrix-compiled-19c3b69ab6cb840d","provider":"kie","route":"/matrix/compiled/19c3b69ab6cb840d/kie/key"}};
 const EXTENSION_NAME = "matrix.compiled.19c3b69ab6cb840d.key-mask.v4";
 const INSTALLED = Symbol.for("matrix.ui-key-mask:provider-key:v4");
 const VIRTUAL_CONTROL = Symbol.for(
@@ -86,7 +86,7 @@ async function ingest(config, state, key, node) {
 }
 
 function providerLabel(config) {
-  return config.provider === "wavespeed" ? "WaveSpeed Key" : `${config.provider} Key`;
+  return config.provider === "kie" ? "Kie.ai Key" : `${config.provider} Key`;
 }
 
 function statusLabel(config, state) {
