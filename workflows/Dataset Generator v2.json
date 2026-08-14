@@ -1,0 +1,5964 @@
+{
+  "id": "c31204b1-a975-49e8-a756-741e467888a1",
+  "revision": 0,
+  "last_node_id": 307,
+  "last_link_id": 695,
+  "nodes": [
+    {
+      "id": 30,
+      "type": "LoadImage",
+      "pos": [
+        -1500,
+        -400
+      ],
+      "size": [
+        300,
+        320
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            38
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ChatGPT Image Apr 23, 2026, 07_45_01 PM.png",
+        "image"
+      ]
+    },
+    {
+      "id": 37,
+      "type": "PixaromaPreview",
+      "pos": [
+        1320,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 93
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview",
+        "pixaromaFrames": [
+          {
+            "filename": "Dataset_02_frontal_smiling_00011_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ],
+        "pixaromaSelected": 0,
+        "pixaromaExpanded": false
+      },
+      "widgets_values": [
+        "Dataset_02_frontal_smiling",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 44,
+      "type": "PixaromaPreview",
+      "pos": [
+        1740,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 99
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview",
+        "pixaromaFrames": [
+          {
+            "filename": "Dataset_03_threequarter_left_00009_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ],
+        "pixaromaSelected": 0,
+        "pixaromaExpanded": false
+      },
+      "widgets_values": [
+        "Dataset_03_threequarter_left",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 4,
+      "type": "UNETLoader",
+      "pos": [
+        -820,
+        -400
+      ],
+      "size": [
+        300,
+        82
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "flux-2-klein-9b-fp8.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "VAELoader",
+      "pos": [
+        -480,
+        -274
+      ],
+      "size": [
+        300,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            21,
+            667
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "flux2-vae.safetensors"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "VAEEncode",
+      "pos": [
+        200,
+        -230
+      ],
+      "size": [
+        300,
+        46
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 44
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            87,
+            92,
+            98,
+            132,
+            156,
+            180,
+            204,
+            228,
+            252,
+            276,
+            300,
+            324,
+            348,
+            372,
+            396,
+            420,
+            444,
+            468,
+            492,
+            516,
+            540,
+            564,
+            588,
+            612,
+            636
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 10,
+      "type": "CLIPLoader",
+      "pos": [
+        -480,
+        -400
+      ],
+      "size": [
+        300,
+        106
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            666
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen_3_8b_fp4mixed.safetensors",
+        "flux2",
+        "default"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "BatchImagesNode",
+      "pos": [
+        200,
+        -400
+      ],
+      "size": [
+        300,
+        150
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image0",
+          "name": "images.image0",
+          "type": "IMAGE",
+          "link": 38
+        },
+        {
+          "label": "image1",
+          "name": "images.image1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 39
+        },
+        {
+          "label": "image2",
+          "name": "images.image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 40
+        },
+        {
+          "label": "image3",
+          "name": "images.image3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 41
+        },
+        {
+          "label": "image4",
+          "name": "images.image4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            44
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "BatchImagesNode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 15,
+      "type": "PixaromaSizes",
+      "pos": [
+        -140,
+        -400
+      ],
+      "size": [
+        300,
+        144
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            11
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaSizes",
+        "sizesState": "{\"version\":1,\"sizes\":[[512,512],[768,768],[1024,1024],[1280,1280],[1200,1600],[2048,2048],[1152,1536]],\"selected\":6,\"orientation\":\"portrait\",\"snap\":64,\"accent\":null,\"collapsed\":true,\"starred\":[],\"w\":1152,\"h\":1536}"
+      },
+      "widgets_values": [
+        {
+          "version": 1,
+          "sizes": [
+            [
+              512,
+              512
+            ],
+            [
+              768,
+              768
+            ],
+            [
+              1024,
+              1024
+            ],
+            [
+              1280,
+              1280
+            ],
+            [
+              1200,
+              1600
+            ],
+            [
+              2048,
+              2048
+            ],
+            [
+              1152,
+              1536
+            ]
+          ],
+          "selected": 6,
+          "orientation": "portrait",
+          "snap": 64,
+          "accent": null,
+          "collapsed": true,
+          "starred": [],
+          "w": 1152,
+          "h": 1536
+        }
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 14,
+      "type": "EmptyLatentImage",
+      "pos": [
+        -140,
+        -236
+      ],
+      "size": [
+        300,
+        106
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 11
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            668
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        512,
+        1
+      ]
+    },
+    {
+      "id": 36,
+      "type": "PixaromaPreview",
+      "pos": [
+        900,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 73
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview",
+        "pixaromaFrames": [
+          {
+            "filename": "Dataset_01_frontal_neutral_00019_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ],
+        "pixaromaSelected": 0,
+        "pixaromaExpanded": false
+      },
+      "widgets_values": [
+        "Dataset_01_frontal_neutral",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 66,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        1320,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 669
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 641
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 92
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 104
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            93
+          ]
+        }
+      ],
+      "title": "02 — Frontal Smiling",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait, facing the camera straight-on with a natural closed-mouth smile, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use soft frontal studio lighting and clean sharp focus on the face. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 73,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        1740,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 670
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 642
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 98
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 105
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            99
+          ]
+        }
+      ],
+      "title": "03 — Threequarter Left",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait from a three-quarter left angle, looking toward the camera with a calm neutral expression, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use soft window-like studio light from the front and keep the face in clean sharp focus. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 305,
+      "type": "PrimitiveInt",
+      "pos": [
+        -450,
+        -110
+      ],
+      "size": [
+        300,
+        82
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653,
+            654,
+            655,
+            656,
+            657,
+            658,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664
+          ]
+        }
+      ],
+      "title": "SEED · Global Control",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "PrimitiveInt"
+      },
+      "widgets_values": [
+        241077709796649,
+        "randomize"
+      ],
+      "color": "#1e3a5f",
+      "bgcolor": "#1a2a40"
+    },
+    {
+      "id": 74,
+      "type": "PrimitiveInt",
+      "pos": [
+        -140,
+        -110
+      ],
+      "size": [
+        300,
+        82
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            103,
+            104,
+            105,
+            133,
+            157,
+            181,
+            205,
+            229,
+            253,
+            277,
+            301,
+            325,
+            349,
+            373,
+            397,
+            421,
+            445,
+            469,
+            493,
+            517,
+            541,
+            565,
+            589,
+            613,
+            637
+          ]
+        }
+      ],
+      "title": "STEPS · Global",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "PrimitiveInt"
+      },
+      "widgets_values": [
+        4,
+        "fixed"
+      ],
+      "color": "#1e3a5f",
+      "bgcolor": "#1a2a40"
+    },
+    {
+      "id": 59,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        900,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 671
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 640
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 87
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 103
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            73
+          ]
+        }
+      ],
+      "title": "01 — Frontal Neutral",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait, facing the camera straight-on with a neutral expression and relaxed posture, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use soft even studio lighting and clean sharp focus with the entire face clearly visible. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 85,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        2160,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 672
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 643
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 132
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 133
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            135
+          ]
+        }
+      ],
+      "title": "04 — Threequarter Right",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait from a three-quarter right angle, looking toward the camera with a calm neutral expression, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use soft window-like studio light from the front and keep the face in clean sharp focus. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 87,
+      "type": "PixaromaPreview",
+      "pos": [
+        2160,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 135
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_04_threequarter_right",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 94,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        2580,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 673
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 644
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 156
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 157
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            159
+          ]
+        }
+      ],
+      "title": "05 — Profile Left",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait from a true left profile, head level and gaze directed straight ahead, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use soft even studio lighting with the facial outline and visible eye sharply focused. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 96,
+      "type": "PixaromaPreview",
+      "pos": [
+        2580,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 159
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_05_profile_left",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 103,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        3000,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 674
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 645
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 180
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 181
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            183
+          ]
+        }
+      ],
+      "title": "06 — Profile Right",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait from a true right profile, head level and gaze directed straight ahead, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use soft even studio lighting with the facial outline and visible eye sharply focused. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 105,
+      "type": "PixaromaPreview",
+      "pos": [
+        3000,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 183
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_06_profile_right",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 112,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        3420,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 675
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 646
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 204
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 205
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            207
+          ]
+        }
+      ],
+      "title": "07 — Slight High Angle",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait photographed from a slight high angle, looking up toward the camera with a relaxed neutral expression, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use broad soft studio light and keep the face sharp without perspective exaggeration. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 114,
+      "type": "PixaromaPreview",
+      "pos": [
+        3420,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 207
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_07_slight_high_angle",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 121,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        3840,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 676
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 647
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 228
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 229
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            231
+          ]
+        }
+      ],
+      "title": "08 — Slight Low Angle",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait photographed from a slight low angle, looking down toward the camera with a relaxed neutral expression, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use broad soft studio light and keep the face sharp without perspective exaggeration. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 123,
+      "type": "PixaromaPreview",
+      "pos": [
+        3840,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 52,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 231
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_08_slight_low_angle",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 130,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        4260,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 677
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 648
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 252
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 253
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            255
+          ]
+        }
+      ],
+      "title": "09 — Looking Away",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a chest-up frontal portrait with the head turned slightly and the gaze directed just outside the frame, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a plain white background. Use soft daylight-balanced studio lighting and clean sharp focus across the face. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 132,
+      "type": "PixaromaPreview",
+      "pos": [
+        4260,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 53,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 255
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_09_looking_away",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 139,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        4680,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 678
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 649
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 276
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 277
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            279
+          ]
+        }
+      ],
+      "title": "10 — Natural Laugh",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a chest-up frontal portrait caught in a natural laugh, shoulders relaxed and face fully visible, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a plain white background. Use soft even studio lighting with a candid expression and a sharply focused face. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 141,
+      "type": "PixaromaPreview",
+      "pos": [
+        4680,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 54,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 279
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_10_natural_laugh",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 148,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        5100,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 679
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 650
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 300
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 301
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            303
+          ]
+        }
+      ],
+      "title": "11 — Hair Tucked",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a shoulder-up portrait from a gentle three-quarter angle, with the hair tucked behind both ears and a neutral attentive expression, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a plain white background. Use soft diffused studio lighting and keep the face, ears and jawline in clean sharp focus. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 150,
+      "type": "PixaromaPreview",
+      "pos": [
+        5100,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 55,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 303
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_11_hair_tucked",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 157,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        5520,
+        -160
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 680
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 651
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 324
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 325
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            327
+          ]
+        }
+      ],
+      "title": "12 — Face Close Crop",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a tight straight-on crop with the face filling the frame from forehead to chin, holding a neutral expression, with only the scoop neckline of a fitted nude-beige athletic sports bra crop top visible against a plain white background. Use soft even frontal lighting and clinical-sharp focus across both eyes and the full face. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 159,
+      "type": "PixaromaPreview",
+      "pos": [
+        5520,
+        140
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 56,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 327
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_12_face_close_crop",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 166,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        900,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 681
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 652
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 348
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 349
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            351
+          ]
+        }
+      ],
+      "title": "13 — Fullbody Frontal",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from a frontal camera angle, standing straight with arms relaxed at the sides, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 168,
+      "type": "PixaromaPreview",
+      "pos": [
+        900,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 57,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 351
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_13_fullbody_frontal",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 175,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        1320,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 682
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 653
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 372
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 373
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            375
+          ]
+        }
+      ],
+      "title": "14 — Fullbody Threequarter Left",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from a three-quarter front left camera angle, standing straight with arms relaxed at the sides, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 177,
+      "type": "PixaromaPreview",
+      "pos": [
+        1320,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 58,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 375
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_14_fullbody_threequarter_left",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 184,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        1740,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 683
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 654
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 396
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 397
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            399
+          ]
+        }
+      ],
+      "title": "15 — Fullbody Threequarter Right",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from a three-quarter front right camera angle, standing straight with arms relaxed at the sides, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 186,
+      "type": "PixaromaPreview",
+      "pos": [
+        1740,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 59,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 399
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_15_fullbody_threequarter_right",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 193,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        2160,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 684
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 655
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 420
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 421
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            423
+          ]
+        }
+      ],
+      "title": "16 — Fullbody Side Left",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from a true left side camera angle, standing upright with arms resting naturally, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 195,
+      "type": "PixaromaPreview",
+      "pos": [
+        2160,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 423
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_16_fullbody_side_left",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 202,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        2580,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 685
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 656
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 444
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 445
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            447
+          ]
+        }
+      ],
+      "title": "17 — Fullbody Side Right",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from a true right side camera angle, standing upright with arms resting naturally, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 204,
+      "type": "PixaromaPreview",
+      "pos": [
+        2580,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 447
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_17_fullbody_side_right",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 211,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        3000,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 686
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 657
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 468
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 469
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            471
+          ]
+        }
+      ],
+      "title": "18 — Fullbody From Behind",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from directly behind, standing upright with arms relaxed at the sides and head level, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 213,
+      "type": "PixaromaPreview",
+      "pos": [
+        3000,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 62,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 471
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_18_fullbody_from_behind",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 220,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        3420,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 687
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 658
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 492
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 493
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            495
+          ]
+        }
+      ],
+      "title": "19 — Fullbody Seated",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, seated upright on a plain backless studio stool at a slight frontal angle with both feet on the floor and hands resting naturally, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 222,
+      "type": "PixaromaPreview",
+      "pos": [
+        3420,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 63,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 495
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_19_fullbody_seated",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 229,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        3840,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 688
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 659
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 516
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 517
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            519
+          ]
+        }
+      ],
+      "title": "20 — Fullbody Walking",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, walking naturally across the studio from left to right in a frontal three-quarter view with one foot mid-step, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background with soft even lighting and only slight motion in the limbs while the face stays sharp. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 231,
+      "type": "PixaromaPreview",
+      "pos": [
+        3840,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 64,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 519
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_20_fullbody_walking",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 238,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        4260,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 689
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 660
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 540
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 541
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            543
+          ]
+        }
+      ],
+      "title": "21 — Fullbody Arms Crossed",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, facing the camera with arms crossed comfortably and weight balanced on both feet, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 240,
+      "type": "PixaromaPreview",
+      "pos": [
+        4260,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 65,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 543
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_21_fullbody_arms_crossed",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 247,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        4680,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 690
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 661
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 564
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 565
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            567
+          ]
+        }
+      ],
+      "title": "22 — Fullbody Hands Pockets",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from a slight three-quarter angle, standing casually with hands resting at the hips and one knee relaxed, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 249,
+      "type": "PixaromaPreview",
+      "pos": [
+        4680,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 66,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 567
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_22_fullbody_hands_pockets",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 256,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        5100,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 691
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 662
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 588
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 589
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            591
+          ]
+        }
+      ],
+      "title": "23 — Halfbody Front",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a half-body portrait from the hips up, facing the camera straight-on with arms resting naturally and posture upright, dressed in a matching nude-beige athletic sports bra crop top with scoop neckline and wide shoulder straps, and matching high-waisted biker shorts, against a neutral soft grey studio background under soft even lighting with the face and torso sharp. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 258,
+      "type": "PixaromaPreview",
+      "pos": [
+        5100,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 67,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 591
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_23_halfbody_front",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 265,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        5520,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 692
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 663
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 612
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 613
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            615
+          ]
+        }
+      ],
+      "title": "24 — Halfbody Threequarter",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character in a half-body portrait from the hips up at a three-quarter right camera angle, shoulders relaxed and hands loosely joined in front, dressed in a matching nude-beige athletic sports bra crop top with scoop neckline and wide shoulder straps, and matching high-waisted biker shorts, against a neutral soft grey studio background under soft even lighting with the face and torso sharp. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 267,
+      "type": "PixaromaPreview",
+      "pos": [
+        5520,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 68,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 615
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_24_halfbody_threequarter",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 274,
+      "type": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+      "pos": [
+        5940,
+        860
+      ],
+      "size": [
+        360,
+        270
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "context",
+          "type": "RGTHREE_CONTEXT",
+          "link": 693
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 664
+        },
+        {
+          "name": "latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 636
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 637
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            639
+          ]
+        }
+      ],
+      "title": "25 — Fullbody Standing Relaxed",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "previewExposures": [
+          {
+            "name": "$$canvas-image-preview",
+            "sourceNodeId": "57",
+            "sourcePreviewName": "$$canvas-image-preview"
+          }
+        ]
+      },
+      "widgets_values": [
+        "Show the character full body from head to feet, the whole body inside the frame, from a frontal camera angle, standing in a relaxed asymmetrical pose with weight on one leg and arms hanging naturally, dressed in a matching nude-beige two-piece athletic outfit — a fitted scoop-neck sports bra crop top with wide shoulder straps and high-waisted form-fitting biker shorts in the same matte stretch athletic fabric, barefoot, against a neutral soft grey studio background under soft even lighting. Keep the same eye color as in the reference images. Keep the exact same body proportions as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections.",
+        4,
+        6
+      ]
+    },
+    {
+      "id": 276,
+      "type": "PixaromaPreview",
+      "pos": [
+        5940,
+        1160
+      ],
+      "size": [
+        360,
+        348
+      ],
+      "flags": {},
+      "order": 69,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 639
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "pixaroma/ComfyUI-Pixaroma",
+        "ver": "dc01158c938188989607a172a3743531d79e5146",
+        "Node name for S&R": "PixaromaPreview"
+      },
+      "widgets_values": [
+        "Dataset_25_fullbody_standing_relaxed",
+        "save"
+      ],
+      "color": "#1d1d1d",
+      "bgcolor": "#2a2a2a"
+    },
+    {
+      "id": 302,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": [
+        400,
+        -200
+      ],
+      "size": [
+        440,
+        700
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "FACE SHOTS",
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "^F(?:0[1-9]|1[0-2])(?:\\s|$)",
+        "showNav": true,
+        "showAllGraphs": false,
+        "sort": "alphanumeric",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default",
+        "Node name for S&R": "Fast Groups Bypasser (rgthree)"
+      },
+      "color": "#1e3a5f",
+      "bgcolor": "#1a2a40"
+    },
+    {
+      "id": 303,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": [
+        360,
+        820
+      ],
+      "size": [
+        480,
+        700
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "BODY SHOTS",
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "^B(?:0[1-9]|1[0-3])(?:\\s|$)",
+        "showNav": true,
+        "showAllGraphs": false,
+        "sort": "alphanumeric",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default",
+        "Node name for S&R": "Fast Groups Bypasser (rgthree)"
+      },
+      "color": "#1e3a5f",
+      "bgcolor": "#1a2a40"
+    },
+    {
+      "id": 304,
+      "type": "Label (rgthree)",
+      "pos": [
+        -1500,
+        -1100
+      ],
+      "size": [
+        1001.255859375,
+        504
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "HOW TO USE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nMODELS\nPoint UNETLoader / CLIPLoader / VAELoader at your own\nFlux.2 Klein diffusion model, text encoder, and VAE files.\n\nREFERENCES\nLoad up to 4 reference images into the LoadImage nodes on\nthe left; they're batched and fed into every enabled shot.\n\nSHOTS\nToggle shots from the FACE SHOTS and BODY SHOTS panels\nto the left of each row. F01-F03 start enabled; all other\nshots start bypassed.\n\nSAVING\nEach shot's Preview Image Pixaroma node has save_mode set\nto \"save\" and its own filename_prefix - no separate Save\nImage node needed. Files land in ComfyUI's output folder.\n\nRE-RUN\nChange one prompt to request only that image again. Seeds are controlled by the SEED · Global Control node\n(left of the graph). Default is randomize each run; switch\nto fixed on that node to reproduce a specific image.",
+      "properties": {
+        "fontSize": 20,
+        "fontFamily": "Arial",
+        "fontColor": "#ffffff",
+        "textAlign": "left",
+        "backgroundColor": "#1e3a5f",
+        "padding": 12,
+        "borderRadius": 8,
+        "angle": 0
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    },
+    {
+      "id": 306,
+      "type": "Context (rgthree)",
+      "pos": [
+        -140,
+        20
+      ],
+      "size": [
+        300,
+        246
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "base_ctx",
+          "type": "RGTHREE_CONTEXT",
+          "link": null
+        },
+        {
+          "dir": 3,
+          "name": "model",
+          "type": "MODEL",
+          "link": 665
+        },
+        {
+          "dir": 3,
+          "name": "clip",
+          "type": "CLIP",
+          "link": 666
+        },
+        {
+          "dir": 3,
+          "name": "vae",
+          "type": "VAE",
+          "link": 667
+        },
+        {
+          "dir": 3,
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null
+        },
+        {
+          "dir": 3,
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": null
+        },
+        {
+          "dir": 3,
+          "name": "latent",
+          "type": "LATENT",
+          "link": 668
+        },
+        {
+          "dir": 3,
+          "name": "images",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "dir": 3,
+          "name": "seed",
+          "type": "INT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "CONTEXT",
+          "type": "RGTHREE_CONTEXT",
+          "links": [
+            669,
+            670,
+            671,
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            680,
+            681,
+            682,
+            683,
+            684,
+            685,
+            686,
+            687,
+            688,
+            689,
+            690,
+            691,
+            692,
+            693
+          ]
+        },
+        {
+          "dir": 4,
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null
+        },
+        {
+          "dir": 4,
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null
+        },
+        {
+          "dir": 4,
+          "name": "VAE",
+          "type": "VAE",
+          "links": null
+        },
+        {
+          "dir": 4,
+          "name": "POSITIVE",
+          "type": "CONDITIONING",
+          "links": null
+        },
+        {
+          "dir": 4,
+          "name": "NEGATIVE",
+          "type": "CONDITIONING",
+          "links": null
+        },
+        {
+          "dir": 4,
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null
+        },
+        {
+          "dir": 4,
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "dir": 4,
+          "name": "SEED",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "title": "Shot Bus · MODEL CLIP VAE LATENT",
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "6b76ee6f2c5a007710b5a16f97c94330d6ecc871",
+        "Node name for S&R": "Context (rgthree)"
+      },
+      "widgets_values": [],
+      "color": "#1e3a5f",
+      "bgcolor": "#1a2a40"
+    },
+    {
+      "id": 31,
+      "type": "LoadImage",
+      "pos": [
+        -1180,
+        -400
+      ],
+      "size": [
+        300,
+        320
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            39
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "Woman_laughing_in_sports_bra_202608141840.jpeg",
+        "image"
+      ]
+    },
+    {
+      "id": 32,
+      "type": "LoadImage",
+      "pos": [
+        -1500,
+        -40
+      ],
+      "size": [
+        300,
+        320
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            40
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "Half-body_portrait_of_woman_2K_202608141759.jpeg",
+        "image"
+      ]
+    },
+    {
+      "id": 33,
+      "type": "LoadImage",
+      "pos": [
+        -1180,
+        -40
+      ],
+      "size": [
+        300,
+        320
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            41
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "Portrait_of_smiling_woman_2K_202608141801.jpeg",
+        "image"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        -820,
+        -298
+      ],
+      "size": [
+        300,
+        82
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            694
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "HighDetail.safetensors",
+        0.15
+      ]
+    },
+    {
+      "id": 307,
+      "type": "FluxKVCache",
+      "pos": [
+        -803.9072635858324,
+        -171.57094395261362
+      ],
+      "size": [
+        242.34191613735015,
+        26
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 694
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            695
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.32.0",
+        "Node name for S&R": "FluxKVCache"
+      }
+    },
+    {
+      "id": 6,
+      "type": "PathchSageAttentionKJ",
+      "pos": [
+        -806.9164233052076,
+        -116.3188059276443
+      ],
+      "size": [
+        300,
+        82
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 695
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            665
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "6ab7e8130e449ed2c0037589bcf84146ceb7fc9c",
+        "Node name for S&R": "PathchSageAttentionKJ"
+      },
+      "widgets_values": [
+        "auto",
+        false
+      ]
+    }
+  ],
+  "links": [
+    [
+      2,
+      4,
+      0,
+      5,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      15,
+      0,
+      14,
+      0,
+      "INT"
+    ],
+    [
+      12,
+      15,
+      1,
+      14,
+      1,
+      "INT"
+    ],
+    [
+      21,
+      19,
+      0,
+      17,
+      1,
+      "VAE"
+    ],
+    [
+      38,
+      30,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      39,
+      31,
+      0,
+      2,
+      1,
+      "IMAGE"
+    ],
+    [
+      40,
+      32,
+      0,
+      2,
+      2,
+      "IMAGE"
+    ],
+    [
+      41,
+      33,
+      0,
+      2,
+      3,
+      "IMAGE"
+    ],
+    [
+      44,
+      2,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      73,
+      59,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      87,
+      17,
+      0,
+      59,
+      2,
+      "LATENT"
+    ],
+    [
+      92,
+      17,
+      0,
+      66,
+      2,
+      "LATENT"
+    ],
+    [
+      93,
+      66,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      98,
+      17,
+      0,
+      73,
+      2,
+      "LATENT"
+    ],
+    [
+      99,
+      73,
+      0,
+      44,
+      0,
+      "IMAGE"
+    ],
+    [
+      103,
+      74,
+      0,
+      59,
+      3,
+      "INT"
+    ],
+    [
+      104,
+      74,
+      0,
+      66,
+      3,
+      "INT"
+    ],
+    [
+      105,
+      74,
+      0,
+      73,
+      3,
+      "INT"
+    ],
+    [
+      132,
+      17,
+      0,
+      85,
+      2,
+      "LATENT"
+    ],
+    [
+      133,
+      74,
+      0,
+      85,
+      3,
+      "INT"
+    ],
+    [
+      135,
+      85,
+      0,
+      87,
+      0,
+      "IMAGE"
+    ],
+    [
+      156,
+      17,
+      0,
+      94,
+      2,
+      "LATENT"
+    ],
+    [
+      157,
+      74,
+      0,
+      94,
+      3,
+      "INT"
+    ],
+    [
+      159,
+      94,
+      0,
+      96,
+      0,
+      "IMAGE"
+    ],
+    [
+      180,
+      17,
+      0,
+      103,
+      2,
+      "LATENT"
+    ],
+    [
+      181,
+      74,
+      0,
+      103,
+      3,
+      "INT"
+    ],
+    [
+      183,
+      103,
+      0,
+      105,
+      0,
+      "IMAGE"
+    ],
+    [
+      204,
+      17,
+      0,
+      112,
+      2,
+      "LATENT"
+    ],
+    [
+      205,
+      74,
+      0,
+      112,
+      3,
+      "INT"
+    ],
+    [
+      207,
+      112,
+      0,
+      114,
+      0,
+      "IMAGE"
+    ],
+    [
+      228,
+      17,
+      0,
+      121,
+      2,
+      "LATENT"
+    ],
+    [
+      229,
+      74,
+      0,
+      121,
+      3,
+      "INT"
+    ],
+    [
+      231,
+      121,
+      0,
+      123,
+      0,
+      "IMAGE"
+    ],
+    [
+      252,
+      17,
+      0,
+      130,
+      2,
+      "LATENT"
+    ],
+    [
+      253,
+      74,
+      0,
+      130,
+      3,
+      "INT"
+    ],
+    [
+      255,
+      130,
+      0,
+      132,
+      0,
+      "IMAGE"
+    ],
+    [
+      276,
+      17,
+      0,
+      139,
+      2,
+      "LATENT"
+    ],
+    [
+      277,
+      74,
+      0,
+      139,
+      3,
+      "INT"
+    ],
+    [
+      279,
+      139,
+      0,
+      141,
+      0,
+      "IMAGE"
+    ],
+    [
+      300,
+      17,
+      0,
+      148,
+      2,
+      "LATENT"
+    ],
+    [
+      301,
+      74,
+      0,
+      148,
+      3,
+      "INT"
+    ],
+    [
+      303,
+      148,
+      0,
+      150,
+      0,
+      "IMAGE"
+    ],
+    [
+      324,
+      17,
+      0,
+      157,
+      2,
+      "LATENT"
+    ],
+    [
+      325,
+      74,
+      0,
+      157,
+      3,
+      "INT"
+    ],
+    [
+      327,
+      157,
+      0,
+      159,
+      0,
+      "IMAGE"
+    ],
+    [
+      348,
+      17,
+      0,
+      166,
+      2,
+      "LATENT"
+    ],
+    [
+      349,
+      74,
+      0,
+      166,
+      3,
+      "INT"
+    ],
+    [
+      351,
+      166,
+      0,
+      168,
+      0,
+      "IMAGE"
+    ],
+    [
+      372,
+      17,
+      0,
+      175,
+      2,
+      "LATENT"
+    ],
+    [
+      373,
+      74,
+      0,
+      175,
+      3,
+      "INT"
+    ],
+    [
+      375,
+      175,
+      0,
+      177,
+      0,
+      "IMAGE"
+    ],
+    [
+      396,
+      17,
+      0,
+      184,
+      2,
+      "LATENT"
+    ],
+    [
+      397,
+      74,
+      0,
+      184,
+      3,
+      "INT"
+    ],
+    [
+      399,
+      184,
+      0,
+      186,
+      0,
+      "IMAGE"
+    ],
+    [
+      420,
+      17,
+      0,
+      193,
+      2,
+      "LATENT"
+    ],
+    [
+      421,
+      74,
+      0,
+      193,
+      3,
+      "INT"
+    ],
+    [
+      423,
+      193,
+      0,
+      195,
+      0,
+      "IMAGE"
+    ],
+    [
+      444,
+      17,
+      0,
+      202,
+      2,
+      "LATENT"
+    ],
+    [
+      445,
+      74,
+      0,
+      202,
+      3,
+      "INT"
+    ],
+    [
+      447,
+      202,
+      0,
+      204,
+      0,
+      "IMAGE"
+    ],
+    [
+      468,
+      17,
+      0,
+      211,
+      2,
+      "LATENT"
+    ],
+    [
+      469,
+      74,
+      0,
+      211,
+      3,
+      "INT"
+    ],
+    [
+      471,
+      211,
+      0,
+      213,
+      0,
+      "IMAGE"
+    ],
+    [
+      492,
+      17,
+      0,
+      220,
+      2,
+      "LATENT"
+    ],
+    [
+      493,
+      74,
+      0,
+      220,
+      3,
+      "INT"
+    ],
+    [
+      495,
+      220,
+      0,
+      222,
+      0,
+      "IMAGE"
+    ],
+    [
+      516,
+      17,
+      0,
+      229,
+      2,
+      "LATENT"
+    ],
+    [
+      517,
+      74,
+      0,
+      229,
+      3,
+      "INT"
+    ],
+    [
+      519,
+      229,
+      0,
+      231,
+      0,
+      "IMAGE"
+    ],
+    [
+      540,
+      17,
+      0,
+      238,
+      2,
+      "LATENT"
+    ],
+    [
+      541,
+      74,
+      0,
+      238,
+      3,
+      "INT"
+    ],
+    [
+      543,
+      238,
+      0,
+      240,
+      0,
+      "IMAGE"
+    ],
+    [
+      564,
+      17,
+      0,
+      247,
+      2,
+      "LATENT"
+    ],
+    [
+      565,
+      74,
+      0,
+      247,
+      3,
+      "INT"
+    ],
+    [
+      567,
+      247,
+      0,
+      249,
+      0,
+      "IMAGE"
+    ],
+    [
+      588,
+      17,
+      0,
+      256,
+      2,
+      "LATENT"
+    ],
+    [
+      589,
+      74,
+      0,
+      256,
+      3,
+      "INT"
+    ],
+    [
+      591,
+      256,
+      0,
+      258,
+      0,
+      "IMAGE"
+    ],
+    [
+      612,
+      17,
+      0,
+      265,
+      2,
+      "LATENT"
+    ],
+    [
+      613,
+      74,
+      0,
+      265,
+      3,
+      "INT"
+    ],
+    [
+      615,
+      265,
+      0,
+      267,
+      0,
+      "IMAGE"
+    ],
+    [
+      636,
+      17,
+      0,
+      274,
+      2,
+      "LATENT"
+    ],
+    [
+      637,
+      74,
+      0,
+      274,
+      3,
+      "INT"
+    ],
+    [
+      639,
+      274,
+      0,
+      276,
+      0,
+      "IMAGE"
+    ],
+    [
+      640,
+      305,
+      0,
+      59,
+      1,
+      "INT"
+    ],
+    [
+      641,
+      305,
+      0,
+      66,
+      1,
+      "INT"
+    ],
+    [
+      642,
+      305,
+      0,
+      73,
+      1,
+      "INT"
+    ],
+    [
+      643,
+      305,
+      0,
+      85,
+      1,
+      "INT"
+    ],
+    [
+      644,
+      305,
+      0,
+      94,
+      1,
+      "INT"
+    ],
+    [
+      645,
+      305,
+      0,
+      103,
+      1,
+      "INT"
+    ],
+    [
+      646,
+      305,
+      0,
+      112,
+      1,
+      "INT"
+    ],
+    [
+      647,
+      305,
+      0,
+      121,
+      1,
+      "INT"
+    ],
+    [
+      648,
+      305,
+      0,
+      130,
+      1,
+      "INT"
+    ],
+    [
+      649,
+      305,
+      0,
+      139,
+      1,
+      "INT"
+    ],
+    [
+      650,
+      305,
+      0,
+      148,
+      1,
+      "INT"
+    ],
+    [
+      651,
+      305,
+      0,
+      157,
+      1,
+      "INT"
+    ],
+    [
+      652,
+      305,
+      0,
+      166,
+      1,
+      "INT"
+    ],
+    [
+      653,
+      305,
+      0,
+      175,
+      1,
+      "INT"
+    ],
+    [
+      654,
+      305,
+      0,
+      184,
+      1,
+      "INT"
+    ],
+    [
+      655,
+      305,
+      0,
+      193,
+      1,
+      "INT"
+    ],
+    [
+      656,
+      305,
+      0,
+      202,
+      1,
+      "INT"
+    ],
+    [
+      657,
+      305,
+      0,
+      211,
+      1,
+      "INT"
+    ],
+    [
+      658,
+      305,
+      0,
+      220,
+      1,
+      "INT"
+    ],
+    [
+      659,
+      305,
+      0,
+      229,
+      1,
+      "INT"
+    ],
+    [
+      660,
+      305,
+      0,
+      238,
+      1,
+      "INT"
+    ],
+    [
+      661,
+      305,
+      0,
+      247,
+      1,
+      "INT"
+    ],
+    [
+      662,
+      305,
+      0,
+      256,
+      1,
+      "INT"
+    ],
+    [
+      663,
+      305,
+      0,
+      265,
+      1,
+      "INT"
+    ],
+    [
+      664,
+      305,
+      0,
+      274,
+      1,
+      "INT"
+    ],
+    [
+      665,
+      6,
+      0,
+      306,
+      1,
+      "MODEL"
+    ],
+    [
+      666,
+      10,
+      0,
+      306,
+      2,
+      "CLIP"
+    ],
+    [
+      667,
+      19,
+      0,
+      306,
+      3,
+      "VAE"
+    ],
+    [
+      668,
+      14,
+      0,
+      306,
+      6,
+      "LATENT"
+    ],
+    [
+      669,
+      306,
+      0,
+      66,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      670,
+      306,
+      0,
+      73,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      671,
+      306,
+      0,
+      59,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      672,
+      306,
+      0,
+      85,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      673,
+      306,
+      0,
+      94,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      674,
+      306,
+      0,
+      103,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      675,
+      306,
+      0,
+      112,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      676,
+      306,
+      0,
+      121,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      677,
+      306,
+      0,
+      130,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      678,
+      306,
+      0,
+      139,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      679,
+      306,
+      0,
+      148,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      680,
+      306,
+      0,
+      157,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      681,
+      306,
+      0,
+      166,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      682,
+      306,
+      0,
+      175,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      683,
+      306,
+      0,
+      184,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      684,
+      306,
+      0,
+      193,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      685,
+      306,
+      0,
+      202,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      686,
+      306,
+      0,
+      211,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      687,
+      306,
+      0,
+      220,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      688,
+      306,
+      0,
+      229,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      689,
+      306,
+      0,
+      238,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      690,
+      306,
+      0,
+      247,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      691,
+      306,
+      0,
+      256,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      692,
+      306,
+      0,
+      265,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      693,
+      306,
+      0,
+      274,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      694,
+      5,
+      0,
+      307,
+      0,
+      "MODEL"
+    ],
+    [
+      695,
+      307,
+      0,
+      6,
+      0,
+      "MODEL"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "F01 FACE · Frontal Neutral",
+      "bounding": [
+        880,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "F02 FACE · Frontal Smiling",
+      "bounding": [
+        1300,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "F03 FACE · Threequarter Left",
+      "bounding": [
+        1720,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "F04 FACE · Threequarter Right",
+      "bounding": [
+        2140,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "F05 FACE · Profile Left",
+      "bounding": [
+        2560,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "F06 FACE · Profile Right",
+      "bounding": [
+        2980,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "F07 FACE · Slight High Angle",
+      "bounding": [
+        3400,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "F08 FACE · Slight Low Angle",
+      "bounding": [
+        3820,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 9,
+      "title": "F09 FACE · Looking Away",
+      "bounding": [
+        4240,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 10,
+      "title": "F10 FACE · Natural Laugh",
+      "bounding": [
+        4660,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 11,
+      "title": "F11 FACE · Hair Tucked",
+      "bounding": [
+        5080,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 12,
+      "title": "F12 FACE · Face Close Crop",
+      "bounding": [
+        5500,
+        -200,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 13,
+      "title": "B01 BODY · Fullbody Frontal",
+      "bounding": [
+        880,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 14,
+      "title": "B02 BODY · Fullbody Threequarter Left",
+      "bounding": [
+        1300,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 15,
+      "title": "B03 BODY · Fullbody Threequarter Right",
+      "bounding": [
+        1720,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 16,
+      "title": "B04 BODY · Fullbody Side Left",
+      "bounding": [
+        2140,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 17,
+      "title": "B05 BODY · Fullbody Side Right",
+      "bounding": [
+        2560,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 18,
+      "title": "B06 BODY · Fullbody From Behind",
+      "bounding": [
+        2980,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 19,
+      "title": "B07 BODY · Fullbody Seated",
+      "bounding": [
+        3400,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 20,
+      "title": "B08 BODY · Fullbody Walking",
+      "bounding": [
+        3820,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 21,
+      "title": "B09 BODY · Fullbody Arms Crossed",
+      "bounding": [
+        4240,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 22,
+      "title": "B10 BODY · Fullbody Hands Pockets",
+      "bounding": [
+        4660,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 23,
+      "title": "B11 BODY · Halfbody Front",
+      "bounding": [
+        5080,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 24,
+      "title": "B12 BODY · Halfbody Threequarter",
+      "bounding": [
+        5500,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    },
+    {
+      "id": 25,
+      "title": "B13 BODY · Fullbody Standing Relaxed",
+      "bounding": [
+        5920,
+        820,
+        400,
+        680
+      ],
+      "color": "#3b82f6",
+      "flags": {}
+    }
+  ],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "8a4ce6ab-e1d1-4e8d-b4fa-6002dc846daf",
+        "version": 1,
+        "state": {
+          "lastGroupId": 25,
+          "lastNodeId": 307,
+          "lastLinkId": 695,
+          "lastRerouteId": 0
+        },
+        "revision": 1,
+        "config": {},
+        "name": "Prompt Encode",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            876.4653825385321,
+            -255.45645539660552,
+            128,
+            208
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1524.4653825385321,
+            -225.45645539660552,
+            128,
+            68
+          ]
+        },
+        "inputs": [
+          {
+            "id": "c0a1b2d3-e4f5-4678-9abc-def012345678",
+            "name": "context",
+            "type": "RGTHREE_CONTEXT",
+            "linkIds": [
+              109
+            ],
+            "localized_name": "context",
+            "pos": [
+              980.4653825385321,
+              -231.45645539660552
+            ]
+          },
+          {
+            "id": "b77aab7a-2342-4084-aa98-5a8bef9beec2",
+            "name": "text",
+            "type": "STRING",
+            "linkIds": [
+              69
+            ],
+            "pos": [
+              980.4653825385321,
+              -211.45645539660552
+            ]
+          },
+          {
+            "id": "e0d18663-4964-4374-86a6-f1d3e3c4b02b",
+            "name": "seed",
+            "type": "INT",
+            "linkIds": [
+              70
+            ],
+            "pos": [
+              980.4653825385321,
+              -191.45645539660552
+            ]
+          },
+          {
+            "id": "6c839bdb-daee-4cd1-a2c9-c5288981e35c",
+            "name": "latent",
+            "type": "LATENT",
+            "linkIds": [
+              85,
+              86
+            ],
+            "pos": [
+              980.4653825385321,
+              -171.45645539660552
+            ]
+          },
+          {
+            "id": "fc4a9dd3-bd36-40da-a404-9a1f0f3d6638",
+            "name": "steps",
+            "type": "INT",
+            "linkIds": [
+              100
+            ],
+            "pos": [
+              980.4653825385321,
+              -151.45645539660552
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "86b588e4-50b4-43fb-9ee1-351f60c640ce",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              108
+            ],
+            "localized_name": "IMAGE",
+            "pos": [
+              1548.4653825385321,
+              -201.45645539660552
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 53,
+            "type": "CLIPTextEncode",
+            "pos": [
+              1064.4653825385321,
+              -531.6233428816647
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 60
+              },
+              {
+                "localized_name": "text",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 69
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  53,
+                  54
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.32.0",
+              "Node name for S&R": "CLIPTextEncode"
+            },
+            "widgets_values": [
+              "Show the character in a shoulder-up portrait, facing the camera straight-on with a neutral expression and relaxed posture, wearing a fitted nude-beige athletic sports bra crop top — scoop neckline, wide shoulder straps, seamless matte stretch fabric — against a soft grey studio background. Use soft even studio lighting and clean sharp focus with the entire face clearly visible. Keep the same eye color as in the reference images. Realistic skin with natural texture, visible pores and subtle imperfections."
+            ]
+          },
+          {
+            "id": 56,
+            "type": "ReferenceLatent",
+            "pos": [
+              1155.510293844324,
+              -125.06977309650709
+            ],
+            "size": [
+              204.134765625,
+              46
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "conditioning",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 55
+              },
+              {
+                "localized_name": "latent",
+                "name": "latent",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 85
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  57
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.32.0",
+              "Node name for S&R": "ReferenceLatent"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 54,
+            "type": "ConditioningZeroOut",
+            "pos": [
+              1159.9589073947736,
+              -289.31656243076503
+            ],
+            "size": [
+              204.134765625,
+              26
+            ],
+            "flags": {
+              "collapsed": true
+            },
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "conditioning",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 53
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  55
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.32.0",
+              "Node name for S&R": "ConditioningZeroOut"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 55,
+            "type": "ReferenceLatent",
+            "pos": [
+              1140.5214121578517,
+              -237.3905998087899
+            ],
+            "size": [
+              204.134765625,
+              46
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "conditioning",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 54
+              },
+              {
+                "localized_name": "latent",
+                "name": "latent",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 86
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "CONDITIONING",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  56
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.32.0",
+              "Node name for S&R": "ReferenceLatent"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 57,
+            "type": "KSampler",
+            "pos": [
+              1106.1011423821226,
+              -15.463390977400028
+            ],
+            "size": [
+              270,
+              262
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 61
+              },
+              {
+                "localized_name": "positive",
+                "name": "positive",
+                "type": "CONDITIONING",
+                "link": 56
+              },
+              {
+                "localized_name": "negative",
+                "name": "negative",
+                "type": "CONDITIONING",
+                "link": 57
+              },
+              {
+                "localized_name": "latent_image",
+                "name": "latent_image",
+                "type": "LATENT",
+                "link": 62
+              },
+              {
+                "localized_name": "seed",
+                "name": "seed",
+                "type": "INT",
+                "widget": {
+                  "name": "seed"
+                },
+                "link": 70
+              },
+              {
+                "localized_name": "steps",
+                "name": "steps",
+                "type": "INT",
+                "widget": {
+                  "name": "steps"
+                },
+                "link": 100
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "LATENT",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  58
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.32.0",
+              "Node name for S&R": "KSampler"
+            },
+            "widgets_values": [
+              278699466644539,
+              "fixed",
+              6,
+              1,
+              "euler",
+              "simple",
+              1
+            ]
+          },
+          {
+            "id": 58,
+            "type": "VAEDecode",
+            "pos": [
+              1178.1602820996525,
+              330.28886451004513
+            ],
+            "size": [
+              140,
+              46
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "samples",
+                "name": "samples",
+                "type": "LATENT",
+                "link": 58
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 63
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "IMAGE",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  108
+                ]
+              }
+            ],
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.32.0",
+              "Node name for S&R": "VAEDecode"
+            },
+            "widgets_values": []
+          },
+          {
+            "id": 76,
+            "type": "Context (rgthree)",
+            "pos": [
+              1004.4653825385321,
+              -255.45645539660552
+            ],
+            "size": [
+              210,
+              246
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+              {
+                "name": "base_ctx",
+                "type": "RGTHREE_CONTEXT",
+                "link": 109
+              },
+              {
+                "name": "model",
+                "type": "MODEL",
+                "link": null
+              },
+              {
+                "name": "clip",
+                "type": "CLIP",
+                "link": null
+              },
+              {
+                "name": "vae",
+                "type": "VAE",
+                "link": null
+              },
+              {
+                "name": "positive",
+                "type": "CONDITIONING",
+                "link": null
+              },
+              {
+                "name": "negative",
+                "type": "CONDITIONING",
+                "link": null
+              },
+              {
+                "name": "latent",
+                "type": "LATENT",
+                "link": null
+              },
+              {
+                "name": "images",
+                "type": "IMAGE",
+                "link": null
+              },
+              {
+                "name": "seed",
+                "type": "INT",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "name": "CONTEXT",
+                "type": "RGTHREE_CONTEXT",
+                "links": null
+              },
+              {
+                "name": "MODEL",
+                "type": "MODEL",
+                "links": [
+                  61
+                ]
+              },
+              {
+                "name": "CLIP",
+                "type": "CLIP",
+                "links": [
+                  60
+                ]
+              },
+              {
+                "name": "VAE",
+                "type": "VAE",
+                "links": [
+                  63
+                ]
+              },
+              {
+                "name": "POSITIVE",
+                "type": "CONDITIONING",
+                "links": null
+              },
+              {
+                "name": "NEGATIVE",
+                "type": "CONDITIONING",
+                "links": null
+              },
+              {
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  62
+                ]
+              },
+              {
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": null
+              },
+              {
+                "name": "SEED",
+                "type": "INT",
+                "links": null
+              }
+            ],
+            "title": "Unpack Shot Bus",
+            "properties": {
+              "cnr_id": "rgthree-comfy",
+              "ver": "6b76ee6f2c5a007710b5a16f97c94330d6ecc871",
+              "Node name for S&R": "Context (rgthree)"
+            },
+            "widgets_values": []
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 53,
+            "origin_id": 53,
+            "origin_slot": 0,
+            "target_id": 54,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 54,
+            "origin_id": 53,
+            "origin_slot": 0,
+            "target_id": 55,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 55,
+            "origin_id": 54,
+            "origin_slot": 0,
+            "target_id": 56,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 56,
+            "origin_id": 55,
+            "origin_slot": 0,
+            "target_id": 57,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 57,
+            "origin_id": 56,
+            "origin_slot": 0,
+            "target_id": 57,
+            "target_slot": 2,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 58,
+            "origin_id": 57,
+            "origin_slot": 0,
+            "target_id": 58,
+            "target_slot": 0,
+            "type": "LATENT"
+          },
+          {
+            "id": 60,
+            "origin_id": 76,
+            "origin_slot": 2,
+            "target_id": 53,
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 61,
+            "origin_id": 76,
+            "origin_slot": 1,
+            "target_id": 57,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 62,
+            "origin_id": 76,
+            "origin_slot": 6,
+            "target_id": 57,
+            "target_slot": 3,
+            "type": "LATENT"
+          },
+          {
+            "id": 63,
+            "origin_id": 76,
+            "origin_slot": 3,
+            "target_id": 58,
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 69,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 53,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 85,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 56,
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 86,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 55,
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 100,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 57,
+            "target_slot": 5,
+            "type": "INT"
+          },
+          {
+            "id": 108,
+            "origin_id": 58,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 70,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 57,
+            "target_slot": 4,
+            "type": "INT"
+          },
+          {
+            "id": 109,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 76,
+            "target_slot": 0,
+            "type": "RGTHREE_CONTEXT"
+          }
+        ],
+        "extra": {
+          "pixaromaGroups": []
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9536048735790937,
+      "offset": [
+        1117.9866402571267,
+        566.9182846272606
+      ]
+    },
+    "frontendVersion": "1.48.7",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
