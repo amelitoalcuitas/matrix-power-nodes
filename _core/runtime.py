@@ -54,6 +54,16 @@ RUNTIME_CONTRACTS = {'kie': {'auth': 'bearer',
                                                                     'should hold the route payload; '
                                                                     'flow_api_media wraps it using each route\'s '
                                                                     'own "model" literal before submitting.',
+                                               '_note_upload_host': 'The file-upload API lives on a DIFFERENT '
+                                                                    'host than the job API — kieai.redpandaai.co, '
+                                                                    'not api.kie.ai — confirmed live on '
+                                                                    '2026-08-14 after api.kie.ai/api/file-stream-'
+                                                                    'upload 404\'d in production (an earlier '
+                                                                    'fetch of docs.kie.ai had wrongly reported '
+                                                                    'api.kie.ai here, conflating it with the '
+                                                                    'job-API OpenAPI server default). The '
+                                                                    'template below is a literal absolute URL for '
+                                                                    'that reason, not {base_url}-relative.',
                                                'balance': 'GET {base_url}/api/v1/chat/credit',
                                                'download_max_bytes': 31457200,
                                                'error_path': 'data.failMsg',
@@ -67,7 +77,7 @@ RUNTIME_CONTRACTS = {'kie': {'auth': 'bearer',
                                                'submit': 'POST {base_url}/api/v1/jobs/createTask',
                                                'submit_wrap_field': 'input',
                                                'task_id_path': 'data.taskId',
-                                               'upload': 'POST {base_url}/api/file-stream-upload',
+                                               'upload': 'POST https://kieai.redpandaai.co/api/file-stream-upload',
                                                'upload_extra_fields': {'uploadPath': 'matrix-power-nodes'},
                                                'upload_max_bytes': 31457200,
                                                'upload_retention_days': 1,
