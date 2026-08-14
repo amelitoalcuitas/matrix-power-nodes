@@ -2,7 +2,7 @@
   "id": "c31204b1-a975-49e8-a756-741e467888a1",
   "revision": 0,
   "last_node_id": 307,
-  "last_link_id": 695,
+  "last_link_id": 696,
   "nodes": [
     {
       "id": 30,
@@ -55,7 +55,7 @@
         348
       ],
       "flags": {},
-      "order": 45,
+      "order": 44,
       "mode": 0,
       "inputs": [
         {
@@ -104,7 +104,7 @@
         348
       ],
       "flags": {},
-      "order": 46,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
@@ -527,7 +527,7 @@
         348
       ],
       "flags": {},
-      "order": 47,
+      "order": 46,
       "mode": 0,
       "inputs": [
         {
@@ -576,7 +576,7 @@
         270
       ],
       "flags": {},
-      "order": 20,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -646,7 +646,7 @@
         270
       ],
       "flags": {},
-      "order": 21,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -838,7 +838,7 @@
         270
       ],
       "flags": {},
-      "order": 22,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -908,7 +908,7 @@
         270
       ],
       "flags": {},
-      "order": 23,
+      "order": 22,
       "mode": 4,
       "inputs": [
         {
@@ -978,7 +978,7 @@
         348
       ],
       "flags": {},
-      "order": 48,
+      "order": 47,
       "mode": 4,
       "inputs": [
         {
@@ -1018,7 +1018,7 @@
         270
       ],
       "flags": {},
-      "order": 24,
+      "order": 23,
       "mode": 4,
       "inputs": [
         {
@@ -1088,7 +1088,7 @@
         348
       ],
       "flags": {},
-      "order": 49,
+      "order": 48,
       "mode": 4,
       "inputs": [
         {
@@ -1128,7 +1128,7 @@
         270
       ],
       "flags": {},
-      "order": 25,
+      "order": 24,
       "mode": 4,
       "inputs": [
         {
@@ -1198,7 +1198,7 @@
         348
       ],
       "flags": {},
-      "order": 50,
+      "order": 49,
       "mode": 4,
       "inputs": [
         {
@@ -1238,7 +1238,7 @@
         270
       ],
       "flags": {},
-      "order": 26,
+      "order": 25,
       "mode": 4,
       "inputs": [
         {
@@ -1308,7 +1308,7 @@
         348
       ],
       "flags": {},
-      "order": 51,
+      "order": 50,
       "mode": 4,
       "inputs": [
         {
@@ -1348,7 +1348,7 @@
         270
       ],
       "flags": {},
-      "order": 27,
+      "order": 26,
       "mode": 4,
       "inputs": [
         {
@@ -1418,7 +1418,7 @@
         348
       ],
       "flags": {},
-      "order": 52,
+      "order": 51,
       "mode": 4,
       "inputs": [
         {
@@ -1458,7 +1458,7 @@
         270
       ],
       "flags": {},
-      "order": 28,
+      "order": 27,
       "mode": 4,
       "inputs": [
         {
@@ -1528,7 +1528,7 @@
         348
       ],
       "flags": {},
-      "order": 53,
+      "order": 52,
       "mode": 4,
       "inputs": [
         {
@@ -1568,7 +1568,7 @@
         270
       ],
       "flags": {},
-      "order": 29,
+      "order": 28,
       "mode": 4,
       "inputs": [
         {
@@ -1638,7 +1638,7 @@
         348
       ],
       "flags": {},
-      "order": 54,
+      "order": 53,
       "mode": 4,
       "inputs": [
         {
@@ -1678,7 +1678,7 @@
         270
       ],
       "flags": {},
-      "order": 30,
+      "order": 29,
       "mode": 4,
       "inputs": [
         {
@@ -1748,7 +1748,7 @@
         348
       ],
       "flags": {},
-      "order": 55,
+      "order": 54,
       "mode": 4,
       "inputs": [
         {
@@ -1788,7 +1788,7 @@
         270
       ],
       "flags": {},
-      "order": 31,
+      "order": 30,
       "mode": 4,
       "inputs": [
         {
@@ -1858,7 +1858,7 @@
         348
       ],
       "flags": {},
-      "order": 56,
+      "order": 55,
       "mode": 4,
       "inputs": [
         {
@@ -1898,7 +1898,7 @@
         270
       ],
       "flags": {},
-      "order": 32,
+      "order": 31,
       "mode": 4,
       "inputs": [
         {
@@ -1968,7 +1968,7 @@
         348
       ],
       "flags": {},
-      "order": 57,
+      "order": 56,
       "mode": 4,
       "inputs": [
         {
@@ -2008,7 +2008,7 @@
         270
       ],
       "flags": {},
-      "order": 33,
+      "order": 32,
       "mode": 4,
       "inputs": [
         {
@@ -2078,7 +2078,7 @@
         348
       ],
       "flags": {},
-      "order": 58,
+      "order": 57,
       "mode": 4,
       "inputs": [
         {
@@ -2118,7 +2118,7 @@
         270
       ],
       "flags": {},
-      "order": 34,
+      "order": 33,
       "mode": 4,
       "inputs": [
         {
@@ -2188,7 +2188,7 @@
         348
       ],
       "flags": {},
-      "order": 59,
+      "order": 58,
       "mode": 4,
       "inputs": [
         {
@@ -2228,7 +2228,7 @@
         270
       ],
       "flags": {},
-      "order": 35,
+      "order": 34,
       "mode": 4,
       "inputs": [
         {
@@ -2298,7 +2298,7 @@
         348
       ],
       "flags": {},
-      "order": 60,
+      "order": 59,
       "mode": 4,
       "inputs": [
         {
@@ -2338,7 +2338,7 @@
         270
       ],
       "flags": {},
-      "order": 36,
+      "order": 35,
       "mode": 4,
       "inputs": [
         {
@@ -2408,7 +2408,7 @@
         348
       ],
       "flags": {},
-      "order": 61,
+      "order": 60,
       "mode": 4,
       "inputs": [
         {
@@ -2448,7 +2448,7 @@
         270
       ],
       "flags": {},
-      "order": 37,
+      "order": 36,
       "mode": 4,
       "inputs": [
         {
@@ -2518,7 +2518,7 @@
         348
       ],
       "flags": {},
-      "order": 62,
+      "order": 61,
       "mode": 4,
       "inputs": [
         {
@@ -2558,7 +2558,7 @@
         270
       ],
       "flags": {},
-      "order": 38,
+      "order": 37,
       "mode": 4,
       "inputs": [
         {
@@ -2628,7 +2628,7 @@
         348
       ],
       "flags": {},
-      "order": 63,
+      "order": 62,
       "mode": 4,
       "inputs": [
         {
@@ -2668,7 +2668,7 @@
         270
       ],
       "flags": {},
-      "order": 39,
+      "order": 38,
       "mode": 4,
       "inputs": [
         {
@@ -2738,7 +2738,7 @@
         348
       ],
       "flags": {},
-      "order": 64,
+      "order": 63,
       "mode": 4,
       "inputs": [
         {
@@ -2778,7 +2778,7 @@
         270
       ],
       "flags": {},
-      "order": 40,
+      "order": 39,
       "mode": 4,
       "inputs": [
         {
@@ -2848,7 +2848,7 @@
         348
       ],
       "flags": {},
-      "order": 65,
+      "order": 64,
       "mode": 4,
       "inputs": [
         {
@@ -2888,7 +2888,7 @@
         270
       ],
       "flags": {},
-      "order": 41,
+      "order": 40,
       "mode": 4,
       "inputs": [
         {
@@ -2958,7 +2958,7 @@
         348
       ],
       "flags": {},
-      "order": 66,
+      "order": 65,
       "mode": 4,
       "inputs": [
         {
@@ -2998,7 +2998,7 @@
         270
       ],
       "flags": {},
-      "order": 42,
+      "order": 41,
       "mode": 4,
       "inputs": [
         {
@@ -3068,7 +3068,7 @@
         348
       ],
       "flags": {},
-      "order": 67,
+      "order": 66,
       "mode": 4,
       "inputs": [
         {
@@ -3108,7 +3108,7 @@
         270
       ],
       "flags": {},
-      "order": 43,
+      "order": 42,
       "mode": 4,
       "inputs": [
         {
@@ -3178,7 +3178,7 @@
         348
       ],
       "flags": {},
-      "order": 68,
+      "order": 67,
       "mode": 4,
       "inputs": [
         {
@@ -3218,7 +3218,7 @@
         270
       ],
       "flags": {},
-      "order": 44,
+      "order": 43,
       "mode": 4,
       "inputs": [
         {
@@ -3288,7 +3288,7 @@
         348
       ],
       "flags": {},
-      "order": 69,
+      "order": 68,
       "mode": 4,
       "inputs": [
         {
@@ -3396,7 +3396,7 @@
         -1100
       ],
       "size": [
-        1001.255859375,
+        6120.6646484375,
         504
       ],
       "flags": {
@@ -3432,7 +3432,7 @@
         246
       ],
       "flags": {},
-      "order": 19,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -3725,7 +3725,8 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            694
+            694,
+            696
           ]
         }
       ],
@@ -3740,15 +3741,15 @@
       ]
     },
     {
-      "id": 307,
-      "type": "FluxKVCache",
+      "id": 6,
+      "type": "PathchSageAttentionKJ",
       "pos": [
-        -803.9072635858324,
-        -171.57094395261362
+        -812.8999908828785,
+        -155.3050232853894
       ],
       "size": [
-        242.34191613735015,
-        26
+        300,
+        82
       ],
       "flags": {
         "collapsed": true
@@ -3759,45 +3760,7 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 694
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            695
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.32.0",
-        "Node name for S&R": "FluxKVCache"
-      }
-    },
-    {
-      "id": 6,
-      "type": "PathchSageAttentionKJ",
-      "pos": [
-        -806.9164233052076,
-        -116.3188059276443
-      ],
-      "size": [
-        300,
-        82
-      ],
-      "flags": {
-        "collapsed": true
-      },
-      "order": 18,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 695
+          "link": 696
         }
       ],
       "outputs": [
@@ -4940,6 +4903,14 @@
       6,
       0,
       "MODEL"
+    ],
+    [
+      696,
+      5,
+      0,
+      6,
+      0,
+      "MODEL"
     ]
   ],
   "groups": [
@@ -5252,7 +5223,7 @@
         "state": {
           "lastGroupId": 25,
           "lastNodeId": 307,
-          "lastLinkId": 695,
+          "lastLinkId": 696,
           "lastRerouteId": 0
         },
         "revision": 1,
@@ -5948,10 +5919,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.9536048735790937,
+      "scale": 1.049749989193798,
       "offset": [
-        1117.9866402571267,
-        566.9182846272606
+        1319.0337016075584,
+        468.51049387927173
       ]
     },
     "frontendVersion": "1.48.7",
